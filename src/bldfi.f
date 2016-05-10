@@ -101,7 +101,7 @@ c
       xmax=-1.E30
       ymin=1.E30
       ymax=-1.E30
-      open(2,name='bldfi.dat')
+      open(2,file='bldfi.dat')
  1    read(1,*,end=10)(x(i),i=1,isp)
       do i=1,nri
         if(ind(i).ne.0)y(i)=x(ind(i))
