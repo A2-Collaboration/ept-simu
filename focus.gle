@@ -1,0 +1,37 @@
+size 20 20
+begin graph
+key nobox pos tr hei .6
+xaxis min 0 max 90 hei .6
+yaxis min -10 max 15 hei .6
+xtitle "Index_x" hei .7
+ytitle "Index_y" hei .7
+title "Bildlinien omap8 bis omap14" hei .7
+data focus8_o.dat  d1
+data focus10_o.dat d2
+data focus11_o.dat d3
+data focus12_o.dat d4
+data focus13_o.dat d5
+data focus14_o.dat d6
+d1 line key "omap8"
+d2 lstyle 2 key "omap10"
+d3 lstyle 3 key "omap11"
+d4 lstyle 4 key "omap12"
+d5 lstyle 5 key "omap13"
+d6 lstyle 6 key "omap14"
+data polschuh_ort_index.geo d11=c3,c4
+data feldkarte.geo d12
+end graph
+amove xg(5) yg(60)
+set hei .5
+amove xg(65) yg(-20)
+text focus.gle
+amove xg(10) yg(-5)
+set hei .6
+text y = -0.182 x + 11.64
+amove xg(10) yg(-6.5)
+text in Index-Einheiten
+amove xg(70) yg(-13)
+text focus.gle
+set lwidth .1
+amove xg(0) yg(11.64)
+aline xg(90) yg(-4.73)

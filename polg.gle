@@ -1,0 +1,10 @@
+size 20 20
+begin graph
+  data polschuh_ort_index.geo d1=c1,c2 d2=c3,c4
+  data polschuh_ic.geo d3
+  data polschuh_io.geo d4
+  d1 lstyle 2
+  d2 line
+  d3 marker wsquare msize .3
+  d4 marker wcircle msize .3
+end graph  

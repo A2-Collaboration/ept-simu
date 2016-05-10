@@ -1,0 +1,18 @@
+size 20 20
+begin graph
+key nobox pos bl hei .6
+xaxis min 0 max 1.5 hei .6
+yaxis min 0 max 3.75 hei .6
+xtitle "B/T" hei .7
+ytitle "d\alpha/\,Grad" hei .7
+title "endpoint-tagger, Ablenkung Hauptsstrahl, 1.6 GeV" hei .6 dist 0
+data dalpha_tesla.dat d1
+data dalpha_tesla_o.dat d2
+!ytitle "max. E_{tag}/\,MeV" hei .6
+!title "endpoint-tagger, max. E_{tag} bei 1.6 GeV" hei .6 dist 0
+d1 marker wcircle msize .3 key "cmap**.map"
+d2 marker fcircle msize .3 key "omap**.map"
+end graph
+amove xg(1.0) yg(-20)
+set hei .5
+text alpha\_tesla.gle

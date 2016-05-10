@@ -1,0 +1,69 @@
+! Auftragen von Bahnen durch ET-KM-MT
+! Die Daten-Files aus km_mt_mt.f enthalten
+! z,x,Winkel/grad,Ort auf Sollstrahl, Abweichung vom Sollstrahl
+! Hier: Vergleich verschiedener Bahnen
+!
+size 20 20
+begin graph
+  key nobox hei .4 offset 6.5 14.3
+  xaxis hei .6 min -200 max 1000
+  yaxis hei .6 min -8 max 8
+!  xtitle "Photonen-Strahlrichtung /cm" hei .6
+!  ytitle "MT-Ablenkrichtung /cm" hei .6
+  xtitle "Position along MT-beam /cm" hei .7
+  ytitle "Deviation from MT-beam /cm" hei .7
+  title "Parameter: ret,rkm,rmt /cm" hei .6
+!  data et_km_mt.dat d10=c4,c5
+!  d10 lstyle 9
+  let d20 = (0) from -200 to 1000 step 200
+  d20 lstyle 9
+  data etkmmt2754.dat d1=c4,c5
+  data etkmmt2756.dat d2=c4,c5
+  data etkmmt2758.dat d3=c4,c5
+  data etkmmt2760.dat d4=c4,c5
+  data etkmmt2762.dat d5=c4,c5
+  d1 line key "330,450,275.4"
+  d2 lstyle 2 key "330,450,275.6"
+  d3 lstyle 3 key "330,450,275.8"
+  d4 lstyle 4 key "330,450,276.0"
+  d5 lstyle 5 key "330,450,276.20"
+end graph
+set lwidth .1
+amove xg(-6.3) yg(8)
+aline xg(-6.3) yg(4)
+amove xg(-6.3) yg(-8)
+aline xg(-6.3) yg(-4)
+amove xg(557) yg(8)
+aline xg(557) yg(6)
+amove xg(640) yg(8)
+aline xg(640) yg(3)
+amove xg(640) yg(-8)
+aline xg(640) yg(-3)
+set lwidth .01
+amove xg(880) yg(4)
+aline xg(885) yg(4)
+aline xg(885) yg(-4)
+aline xg(880) yg(-4)
+aline xg(880) yg(4)
+set lstyle 9
+amove xg(-136) yg(5)
+aline xg(-113) yg(5)
+aline xg(-113) yg(-5)
+aline xg(-136) yg(-5)
+aline xg(-136) yg(5)
+amove xg(-82) yg(5)
+aline xg(-42) yg(5)
+aline xg(-42) yg(-5)
+aline xg(-82) yg(-5)
+aline xg(-82) yg(5)
+amove xg(0) yg(5)
+aline xg(379.34) yg(5)
+aline xg(379.34) yg(-5)
+aline xg(0) yg(-5)
+aline xg(0) yg(5)
+amove xg(-150) yg(-5.5)
+text ET  
+amove xg(-85) yg(-5.5)
+text KM
+amove xg(180) yg(-5.5)
+text MT

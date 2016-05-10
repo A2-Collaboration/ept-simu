@@ -1,0 +1,39 @@
+size 20 20
+!amove -2 0
+!begin origin
+begin graph
+size 20 20
+xaxis min -5 max 85 hei .6
+yaxis min -5 max 85 hei .6
+xtitle "Index_{x}" hei .6
+ytitle "Index_{z}" hei .6
+title "Kontur 1.4T, omap141" hei .6
+key nobox pos tr hei .5
+data kontur_140.dat d1
+data kontur_138.dat d2
+data kontur_136.dat d3
+data kontur_134.dat d4
+data kontur_132.dat d5
+data kontur_130.dat d6
+data kontur_100.dat d7
+data kontur_50.dat d8
+data polschuh_io.geo d14
+!data kontur5.dat d5
+!data kontur6.dat d6
+!let d15 = d5-1
+!let d12 = d2-.5
+!let d14 = d4-.5
+!let d16 = d6-1
+d1 line key "1.40 T"
+d2 lstyle 2 key "1.38 T"
+d3 lstyle 3 key "1.36 T"
+d4 lstyle 4 key "1.34 T"
+d5 lstyle 5 key "1.32 T"
+d6 lstyle 6 key "1.30 T"
+d7 lstyle 7 key "1.00 T"
+d8 lstyle 8 key "0.50 T"
+d14 lstyle 1 lwidth .05
+!d15 lstyle 5 key "omap141.map"
+!d16 lstyle 6 key "omap141.map"
+end graph
+!end origin

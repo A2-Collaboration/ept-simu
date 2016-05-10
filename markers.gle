@@ -1,0 +1,212 @@
+!********* selbst definierte marker ************
+! f"ur die folgenden Symbole sind die Farben definiert :
+! red, blue, green, yellow, cyan, pink, magenta
+!********** Kreise *******************
+set color black
+sub circle_red siz 0
+  circle siz/2 fill red
+  circle siz/2
+end sub
+sub circle_blue siz 0
+  circle siz/2 fill blue
+  circle siz/2
+end sub
+sub circle_cyan siz 0
+  circle siz/2 fill cyan
+  circle siz/2
+end sub
+sub circle_orange siz 0
+  circle siz/2 fill orange
+  circle siz/2
+end sub
+sub circle_green siz 0
+  circle siz/2 fill green
+  circle siz/2
+end sub
+sub circle_pink siz 0
+  circle siz/2 fill pink
+  circle siz/2
+end sub
+sub circle_magenta siz 0
+  circle siz/2 fill magenta
+  circle siz/2
+end sub
+sub circle_yellow siz 0
+  circle siz/2 fill yellow
+  circle siz/2
+end sub
+! ************* Quadrate ************
+sub square_red siz 0
+  box siz siz justify cc fill red
+  box siz siz justify cc
+end sub
+sub square_blue siz 0
+  box siz siz justify cc fill blue
+  box siz siz justify cc
+end sub
+sub square_green siz 0
+  box siz siz justify cc fill green
+  box siz siz justify cc
+end sub
+sub square_pink siz 0
+  box siz siz justify cc fill pink
+  box siz siz justify cc
+end sub
+sub square_cyan siz 0
+  box siz siz justify cc fill cyan
+  box siz siz justify cc
+end sub
+sub square_magenta siz 0
+  box siz siz justify cc fill magenta
+  box siz siz justify cc
+end sub
+sub square_yellow siz 0
+  box siz siz justify cc fill yellow
+  box siz siz justify cc
+end sub
+! ****** quadratische Rauten, Diamond **********
+sub diamond_red siz 0
+  begin rotate 45
+  box siz siz justify cc fill red
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_blue siz 0
+  begin rotate 45
+  box siz siz justify cc fill blue
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_green siz 0
+  begin rotate 45
+  box siz siz justify cc fill green
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_pink siz 0
+  begin rotate 45
+  box siz siz justify cc fill pink
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_cyan siz 0
+  begin rotate 45
+  box siz siz justify cc fill cyan
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_magenta siz 0
+  begin rotate 45
+  box siz siz justify cc fill magenta
+  box siz siz justify cc
+  end rotate
+end sub
+sub diamond_yellow siz 0
+  begin rotate 45
+  box siz siz justify cc fill yellow
+  box siz siz justify cc
+  end rotate
+end sub
+! ************* Dreiecke, Spitze nach oben **********
+sub triangle_red siz 0 
+begin origin
+ begin path stroke fill red
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_blue siz 0 
+begin origin
+ begin path stroke fill blue
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_green siz 0 
+begin origin
+ begin path stroke fill green
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_cyan siz 0 
+begin origin
+ begin path stroke fill cyan
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_pink siz 0 
+begin origin
+ begin path stroke fill pink
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_yellow siz 0 
+begin origin
+ begin path stroke fill yellow
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+sub triangle_magenta siz 0 
+begin origin
+ begin path stroke fill magenta
+  amove -siz/2 -.29*siz
+  aline siz/2 -.29*siz
+  aline 0 .58*siz
+  closepath
+ end path
+end origin
+end sub
+!
+define marker circle_red circle_red
+define marker circle_blue circle_blue
+define marker circle_cyan circle_cyan
+define marker circle_magenta circle_magenta
+define marker circle_green circle_green
+define marker circle_yellow circle_yellow
+define marker circle_orange circle_orange
+define marker circle_pink circle_pink
+define marker square_red square_red
+define marker square_blue square_blue
+define marker square_green square_green
+define marker square_cyan square_cyan
+define marker square_pink square_pink
+define marker square_magenta square_magenta
+define marker square_yellow square_yellow
+define marker diamond_red diamond_red
+define marker diamond_blue diamond_blue
+define marker diamond_green diamond_green
+define marker diamond_cyan diamond_cyan
+define marker diamond_pink diamond_pink
+define marker diamond_magenta diamond_magenta
+define marker diamond_yellow diamond_yellow
+define marker triangle_red triangle_red
+define marker triangle_blue triangle_blue
+define marker triangle_green triangle_green
+define marker triangle_pink triangle_pink
+define marker triangle_magenta triangle_magenta
+define marker triangle_cyan triangle_cyan
+define marker triangle_yellow triangle_yellow
+set color black
+

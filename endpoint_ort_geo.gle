@@ -1,0 +1,16 @@
+size 20 20
+begin graph
+  xaxis min -70 max 40 hei .6 
+  yaxis min -10 max 110 hei .6
+  xtitle "Ort z/cm" hei .6
+  ytitle "Ort x/cm" hei .6
+  title "Polschuh, Kartenrand und Nullpunkt Ort" hei .6 
+  data polschuh_ort.geo d1
+  data kartenrand_ort.geo d3
+  d1 line
+  d3 lstyle 3
+end graph
+amove xg(0) yg(0)
+marker wcircle .3
+
+

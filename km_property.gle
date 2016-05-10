@@ -1,0 +1,19 @@
+size 20 20
+begin graph
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "Feld/T" hei .7
+  ytitle "\alpha\,/Grad" hei .7
+  title "Winkel(B,E), E=1 bis 1.6 step .2 GeV" hei .7
+  data km_property.dat d1
+  d1 line
+end graph
+set hei .6
+amove xg(1) yg(7.6)
+text E=1\,GeV
+amove xg(1.1) yg(7)
+text E=1.2\,GeV
+amove xg(1.2) yg(6.5)
+text E=1.4\,GeV
+amove xg(1.3) yg(5.2)
+text E=1.6\,GeV

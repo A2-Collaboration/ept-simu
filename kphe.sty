@@ -1,0 +1,320 @@
+%%
+%% kph.sty
+%% Abgeleitet von jb96.sty von Jörg Knappen
+%% K.W. Krygier, Insitut für Kernphysik, Uni Mainz
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{kph}[1999/12/12 Jahres/SFB-Bericht KPH Mainz 1998-2000 (KWK)]
+%%
+%% Verlange die anderen Pakete
+%%
+\RequirePackage{a4}
+\RequirePackage{english}
+\RequirePackage{graphicx}
+\usepackage{pslatex}
+\usepackage{rotating}
+\usepackage[latin1]{inputenc}
+\usepackage{supertabular}
+
+%%
+%% Allgemeine Layoutparameter
+%%
+\clubpenalty=3000 \widowpenalty=3000 \brokenpenalty=6000
+\interfootnotelinepenalty=3000
+\hfuzz=1pt\relax
+
+%%
+%% Breiterer Text...
+%%
+\textwidth      5.70in
+\marginparwidth 0.80in
+\if@twoside
+  \oddsidemargin  0.20in
+  \evensidemargin 0.40in
+\else
+  \oddsidemargin  0.20in
+  \evensidemargin 0.20in
+\fi
+
+%%
+%% KPH-Layout: Abs"atze durch vertikalen Platz statt Einzug
+%%
+\parindent=\z@
+\partopsep=\z@
+\parskip=0.5\baselineskip plus 0.15\baselineskip minus 0.1\baselineskip
+
+%%
+%% USabstract in englischer Sprache
+%%
+\newenvironment{USabstract}{%
+  \originalTeX
+  \if@twocolumn \section*{\abstractname}
+  \else
+     \reset@font\small
+     {\bfseries \abstractname.}
+  \fi
+}{\par \germanTeX \shortnames}
+
+%%
+%% Reduzierter Zwischenraum um Listen herum und innerhalb derselben
+%%
+\renewcommand{\@listI}{\leftmargin=\leftmargini
+   \topsep=\z@ \parsep=\parskip \itemsep=\z@}
+\let\@listi\@listI
+\@listi
+\renewcommand{\@listiii}{\leftmargin=\leftmarginiii
+    \labelwidth=\leftmarginiii \advance\labelwidth-\labelsep
+    \topsep=\z@ \parsep=\parskip \itemsep=\z@}
+
+%%
+%% Weniger Einr"uckung
+%%
+\leftmargini=1.7em
+\leftmarginii=1.3em
+\leftmarginiii=1.3em
+\leftmarginiv=1.3em
+\leftmarginv=1.3em
+\leftmarginvi=1.3em
+
+%%
+%% F"ur das Inhaltsverzeichnis \dots
+%%
+\newcommand{\bf@dottedtocline}[5]{%
+  \ifnum #1>\c@tocdepth
+  \else \vskip \z@ plus .2pt
+    {\leftskip=#2\relax \rightskip=\@tocrmarg \parfillskip=-\rightskip
+     \parindent=#2\relax \@afterindenttrue \interlinepenalty=\@M
+     \leavevmode
+     \@tempdima=#3\relax \advance\leftskip\@tempdima \hbox{}\hskip 
+-\leftskip
+     {\reset@font\bf#4}\nobreak\leaders%
+     \hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep mu$}%
+     \hfill \nobreak \hbox to\@pnumwidth{\hfil\reset@font\bf #5}\par}
+  \fi
+  \vskip0.5em}
+
+%%
+%% Abbildungsparameter
+%%
+\setcounter{totalnumber}{6}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\renewcommand{\textfraction}{.2}
+\renewcommand{\floatpagefraction}{.7}
+\renewcommand{\fps@figure}{htbp}
+
+%%
+%% Vor den Literaturangaben war zu viel wei"ser Zwischenraum. Korrigiert
+%% 7-MAR-1994 (J"org Knappen)
+\def\thebibliography#1{\list
+  {\@biblabel{\arabic{enumiv}}}{\settowidth\labelwidth{\@biblabel{#1}}%
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \def\theenumiv{\arabic{enumiv}}}%
+    \def\newblock{\hskip .11em plus.33em minus.07em}%
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}
+\def\endthebibliography{%
+  \def\@noitemerr{\@warning{Empty `thebibliography' environment}}%
+  \endlist}
+
+%%
+%% Einige Sonderzeichen
+%%
+\def\Lambdabar{\protect\pLambdabar}
+\def\pLambdabar{%
+\relax
+\bgroup
+\def\TempA{\hbox{\raise.83\ht0
+\hbox to0pt{\kern.25\wd0\vrule width.5\wd0
+height.1pt depth.1pt\hss}\box0}}%
+\mathchoice{\setbox0\hbox{$\displaystyle\Lambda$}\TempA}%
+{\setbox0\hbox{$\textstyle\Lambda$}\TempA}%
+{\setbox0\hbox{$\scriptstyle\Lambda$}\TempA}%
+{\setbox0\hbox{$\scriptscriptstyle\Lambda$}\TempA}%
+\egroup
+}
+
+%%
+%% Numerierungstiefe
+%%
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+
+%%
+%% Kapitelüberschriften etc.
+%%
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \ifnum \c@secnumdepth >\m@ne
+      \LARGE\bf \@chapapp{} \thechapter
+      \par
+      \vskip 10\p@ 
+    \fi
+    \huge \bf
+    #1\par
+    \nobreak
+    \vskip 20\p@
+  }}
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedright
+    \huge \bf
+    #1\par
+    \nobreak
+    \vskip 20\p@
+  }}
+%% section \dots
+\newlength{\@ein}
+\renewcommand{\section}{\settowidth{\@ein}{\thesection\hskip 2.2em}
+             \@startsection
+             {section}{1}{\z@}%
+             {-2ex plus -1ex minus -.2ex}%
+             {1ex plus .2ex}%
+             {\Large\bf}}
+\renewcommand{\subsection}{\settowidth{\@ein}{\thesubsection\hskip 1.8em}
+                \@startsection
+                {subsection}{2}{\z@}%
+                {-3.25ex plus -1ex minus -.2ex}%
+                {1ex plus .2ex}%
+                {\large\bf}}
+\renewcommand{\subsubsection}{\settowidth{\@ein}{\thesubsubsection\hskip 1.9em}
+                   \@startsection
+                   {subsubsection}{3}{\z@}%
+                   {-3.25ex plus -1ex minus -.2ex}%
+                   {1ex plus .2ex}%
+                   {\normalsize\bf}}
+\renewcommand{\paragraph}{\settowidth{\@ein}{\theparagraph\hskip 1.15em}
+                   \@startsection
+                   {paragraph}{4}{\z@}%
+                   {-3.25ex plus -1ex minus -.2ex}%
+                   {1ex plus .2ex}%
+                   {\normalsize\bf}}
+
+%%
+%% Bildunterschriften kleiner
+%%
+\long\def\@caption#1[#2]#3{\par\addcontentsline{\csname
+  ext@#1\endcsname}{#1}{\protect\numberline{\csname
+  the#1\endcsname}{\ignorespaces #2}}\begingroup
+    \@parboxrestore
+    \small
+    \@makecaption{\csname fnum@#1\endcsname}{\ignorespaces #3}\par
+  \endgroup}
+
+%%
+%% Autorenauszeichnung, erm"oglicht ein Autorenverzeichnis
+%%
+%\newenvironment{aut}{\begin{list}{\hspace*\@ein}{}\item}%
+%damit die Autoren ohne Einzug gedruckt werden
+\newenvironment{aut}{\begin{list}{\hspace*\@ein}{\settowidth{\@ein}}\item}%
+                    {\end{list}}
+\newcommand{\autor}[2]{#1 \textsc{#2}\index{#2, #1}}
+
+%%
+%% Abk"urzungen f"ur Abbildung und Tabelle, Referenzen ohne Titel
+%%
+\newcommand{\shortnames}{%
+\renewcommand{\tablename}{Tab.}  \renewcommand{\figurename}{Abb.}
+\renewcommand{\refname}{}}
+\shortnames
+
+%%
+%% Nuklide
+%%
+\newcommand{\textnuklid}[2]{\({}^{#1}\)#2}
+\newcommand{\mathnuklid}[2]{\,{}^#1\mathrm{#2}}
+
+%%
+%% Einige Definitionen
+%%
+\newcommand{\rb}[1]{\raisebox{1.5ex}[-1.5ex]{#1}}
+\newcommand {\GEn} {\mbox{G$_{E,n}$}}
+\newcommand {\GMn} {\mbox{G$_{M,n}$}}
+\newcommand {\GEp} {\mbox{G$_{E,p}$}}
+\newcommand {\GMp} {\mbox{G$_{M,p}$}}
+\newcommand {\He} {$^3$He}
+\newcommand {\vHe} {$^3\vec{\mathrm{He}}$}
+\newcommand {\Heen} {$^3\vec{\mathrm{He}}(\vec{\mathrm{e}}$,e$'$n)}
+\newcommand {\Deen} {D$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{n}})$}
+\newcommand {\Deep} {D$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{p}})$}
+\newcommand {\Heep} {H$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{p}})$}
+\newcommand {\Hen} {$^3\vec{\mathrm{He}}(\vec{\mathrm{e}}$,e$'$n)}
+\newcommand {\Hee} {$^3\vec{\mathrm{He}}(\vec{\mathrm{e}}$,e$')$}
+\newcommand {\Den} {D$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{n}})$}
+\newcommand {\Dep} {D$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{p}})$}
+\newcommand {\Hep} {H$(\vec{\mathrm{e}}$,e$'\vec{\mathrm{p}})$}
+
+\newcommand{\qsq}{$q^2$}      
+\newcommand{\grad}{$^\circ$}
+\newcommand{\ee}{(e,e$'$)}            
+\newcommand{\eep}{(e,e$'$p)}            
+\newcommand{\eed}{(e,e$'$d)}            
+\newcommand{\een}{(e,e$'$n)}            
+\newcommand{\eepi}{(e,e$'\pi$)}
+\newcommand{\eepp}{(e,e$'$pp)}            
+\newcommand{\eepn}{(e,e$'$pn)}            
+\newcommand{\eepip}{(e,e$'\pi^+$)}
+\newcommand{\eepim}{(e,e$'\pi^-$)}
+\newcommand{\eepipm}{(e,e$'\pi^\pm$)}
+\newcommand{\eepio}{(e,e$'\pi^0$)}
+\newcommand{\eeppip}{(e,e$'$p$\pi^+$)}
+\newcommand{\eeppim}{(e,e$'$p$\pi^-$)}
+\newcommand{\eeppipm}{(e,e$'$p$\pi^\pm$)}
+\newcommand{\eeppio}{(e,e$'$p)$\pi^0$}
+\newcommand{\peepg}{p(e,e$'$p)$\gamma$}
+\newcommand{\EeP}{($\vec{\mathrm{e}}$,$\mathrm{e}'\vec{\mathrm{p}}$)}      
+\newcommand{\EeN}{($\vec{\mathrm{e}}$,$\mathrm{e}'\vec{\mathrm{n}}$)}      
+\newcommand{\EePpio}{($\vec{\mathrm{e}}$,e$'\vec{\mathrm{p}}\pi^0$)}
+\newcommand{\snp}{S_{0+}^{*}}
+\newcommand{\sem}{S_{1-}^{*}}
+\newcommand{\sep}{S_{1+}^{*}}
+\newcommand{\snpx}{S_{0+}}
+\newcommand{\semx}{S_{1-}}
+\newcommand{\sepx}{S_{1+}}
+\newcommand{\enp}{E_{0+}}
+\newcommand{\eom}{E_{1-}}
+\newcommand{\eop}{E_{1+}}
+\newcommand{\mem}{M_{1-}}
+\newcommand{\mep}{M_{1+}}
+\newcommand{\tcm}{\mbox{$\theta_p^{cm}$}}
+\newcommand{\tlab}{\mbox{$\theta_p^{lab}$}}
+\newcommand{\tw}{\mbox{$\vartheta_W$}}
+\newcommand{\RL}{\mbox{$R_L$}}
+\newcommand{\RLn}{\mbox{$R_L^n$}}
+\newcommand{\RT}{\mbox{$R_T$}}
+\newcommand{\RTn}{\mbox{$R_T^n$}}
+\newcommand{\RTT}{\mbox{$R_{TT}$}}
+\newcommand{\RTTn}{\mbox{$R_{TT}^n$}}
+\newcommand{\RTTl}{\mbox{$R_{TT}^l$}}
+\newcommand{\RTTt}{\mbox{$R_{TT}^t$}}
+\newcommand{\RLT}{\mbox{$R_{LT}$}}
+\newcommand{\RLTn}{\mbox{$R_{LT}^n$}}
+\newcommand{\RLTl}{\mbox{$R_{LT}^l$}}
+\newcommand{\RLTt}{\mbox{$R_{LT}^t$}}
+\newcommand{\RLTp}{\mbox{$R_{LT'}$}}
+\newcommand{\RLTpn}{\mbox{$R_{LT'}^n$}}
+\newcommand{\RLTpl}{\mbox{$R_{LT'}^l$}}
+\newcommand{\RLTpt}{\mbox{$R_{LT'}^t$}}
+\newcommand{\RTTpl}{\mbox{$R_{TT'}^l$}}
+\newcommand{\RTTpt}{\mbox{$R_{TT'}^t$}}
+\newcommand{\Pn}{\mbox{$P_n$}}
+\newcommand{\Pl}{\mbox{$P_l$}}
+\newcommand{\Pt}{\mbox{$P_t$}}
+\newcommand{\KM}{\mbox{$K_{Mott}$}}
+\newcommand{\KLTp}{\mbox{$K_{LT'}$}}
+\newcommand{\KLT}{\mbox{$K_{LT}$}}
+\newcommand{\KTp}{\mbox{$K_{T'}$}}
+
+%%
+%% Einheitliche theta, epsilon, phi und rho
+%%
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\vartheta}{\theta}
+\renewcommand{\varphi}{\phi}
+\renewcommand{\varrho}{\rho}
+
+\endinput

@@ -1,0 +1,29 @@
+size 20 20
+begin graph
+xaxis min 0 max 90 hei .6
+yaxis min -10 max 80 hei .6
+xtitle "Index_x" hei .7
+ytitle "Index_y" hei .7
+title "omap140.map " hei .7
+data track_140.dat d1
+d1 line
+data detektor_geo.geo d10
+d10 line lwidth .01
+data polschuh_io.geo d11
+data feldkarte.geo d12
+d11 lstyle 3
+d12 lstyle 2
+end graph
+amove xg(5) yg(60)
+set hei .6
+text 1600 MeV
+amove xg(40) yg(60)
+text 10-180, step 10 MeV
+amove xg(5) yg(70)
+text Geometrie Radiator und Detektorlinie realistisch
+set hei .5
+amove xg(65) yg(-20)
+text raytrace\_feld.gle
+!set lwidth .05
+!amove xg(17.9) yg(2.81)
+!aline xg(81.36) yg(2.81)

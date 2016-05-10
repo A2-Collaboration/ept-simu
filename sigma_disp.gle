@@ -1,0 +1,23 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos br
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "E/\,MeV" hei .7
+  ytitle "peak position\,/cm" hei .6
+  title " Eo=1.6\,GeV" hei .6
+  data sigdisp14.dat d1=c1,c2
+  data sigdisp08.dat d2=c1,c2
+  d1 marker fcircle msize .2 key "1.4\,T, 0.44\,cm/MeV"
+  d2 marker cross msize .4 key "0.8\,T, 0.78\,cm/MeV"
+!  let d10 = d2-d1
+!  d10 line key "141-142"
+!  let d11 = d2-d3
+!  d11 lstyle 2 key "141-140"
+end graph
+amove xg(40) yg(20)
+set hei .6
+!text Dispersion ~ 2 MeV/cm
+amove xg(120) yg(-0.33)
+set hei .5
+text sigma\_disp.gle

@@ -1,0 +1,9 @@
+
+size 20 20
+begin graph
+  size 20 20
+  data fort.17 d1
+  xaxis hei .6
+  yaxis hei .6
+d1 marker wcircle msize .1
+  end graph

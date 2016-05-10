@@ -1,0 +1,26 @@
+
+Verlauf einer rechnerischen Eichung fuer den Endpoint-Tagger
+============================================================
+
+Beginn mit brems_mx.exe  -- MC-Berechnung von Verteilungen
+monochromatischer PB-Elektronen. Eingabe einer Feldkarte
+omap***.map, der im Programm vorgegebenen Standard-Parameter
+und der Elektronen-Energien.
+Das Ergebnis in fort.17 wird dann weiterbenutzt im Programm
+eich_leiter.exe  -- dort werden anhand der Leietergeometrie
+den Detektoren 1 bis 47 Energien durch lineare Interpolation 
+zugeordnet. Der File fort.17 sollte in einem File eich***.cal
+aufbewahrt werden. Das Programm liefert einen Ergebnisfile
+detektor_eichung.dat. der in deichung_***.cal umbenannt werden 
+sollte. 
+Dann wird das Programm brems_mc_el.exe gerufen, in dem
+die PE-Elektronen gleichmaessig verwuerfelt und dann in die
+durch die Leiter-Detektoren gegebenen Intervalle eingeordnet
+werden. Die dabei entstehenden Histogramme werden dann zu
+einer weiteren Eichung benutzt, die mit der aus brems_mc.exe
+natuerlich uebereinstimmen muss. Das Endergebnis findet sich dann
+in fort.16. Es sollte in eich_brel_***.cal gerettet werden.
+Die Files *.cal enthalten Ergebnisse zur ET-Eichung, dort stehen 
+meist erklaerende Kopf-Zeilen am Anfang, die bei Weiterverarbeitungen
+eventuell geloescht werden muessen. Z.B. durch Editieren eines
+*.cal Files in einen *.dat File.

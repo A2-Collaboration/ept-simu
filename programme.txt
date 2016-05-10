@@ -1,0 +1,342 @@
+
+Kurzerklaerung der Programme zum Endpoint-Tagger
+================================================
+
+Original-Felkarten map**.map, ** steht grob fuer den maximalen
+Feldwert (**=10 entspricht 1T)
+
+convert_map.f :
+Konverteirt Original-Feldkarte map.map (kopiert von map**.map) 
+in eine Feldkarte fort.10 die in cmap**.map kopiert wird.
+
+cmap**.map enthaelt Kommentarzeile Maximalwerte Ix, Iz, Inkrement
+dann ix, iz, Feldwert/Gauss
+ix laeuft || zur Eintrittskante in Ablenkrichtung
+iz grob in Strahlrichtung
+
+feld_kontur_punkte.f
+Sucht nach Punkten mit vorgegebenem Feldwert.
+Ergebnis der ungeorneten Punlte in fort.11, die in kontur**.dat
+kopiert werden koennen. Darstellung mit kontur_punkte.gle .
+
+
+feld_kontur_linie.f
+Liest kontur**.dat Files ein, ordnet die Punkte, so dass sie als
+Punktfolge eine Linie beschreiben. Ergebnis in fort.12, kopieren in
+lkontur**.dat, darstellen mit kontur_linien.gle .
+
+feld_kontur.f
+Kombiniert feld_kontur_punkte.f und feld_kontur_linie.f und erstellt
+entsprechend die Ergebnisfiles fort.11 und fort.12 .
+
+raytrace_feld.f
+Bestimmt Elektronen-Bahnen im Magnetfeld (gegeben durch cmap**.map).
+Benutzt Routinen su_trace_feld.f (Runge-Kutta) und su_such_feld.f .
+Ergebnis steht in raytrace.dat, kann in bahn**.dat kopiert und 
+in raytrace.gle dargestellt werden.
+
+raytrace_focus.f
+Bestimmt den Schnittpunkt zweier Bahnen, die um + - einen Winkel
+zur Sollrichtung variieren. Es benutzt die Routinen 
+su_trace_bahn.f, su_such_feld.f und su_find_focus.f .
+Die Bahnen werden in fort.20 so abgelegt, dass sie mit
+raytrace_focus.gle direkt dargestellt werden koennen.
+Die Schnittpunkte werden in fort.14 notiert. Diese Linie wird ebenfalls
+mit raytrace_focus.gle dargestellt.
+
+raytrace_eich_bild.f
+Eicht eine aus fort.14 entnommene allgemein gueltige Bildline in Energien.
+Diese Line entspricht der Lage der Zaehlerleiter.
+Das Ergebnis steht in fort.15
+
+-------------------------------------------------
+Kommentare als Header in den folgenden Programmen
+-------------------------------------------------
+
+asymaps.f
+---------
+Das Programm bestimmt die "Asymmetrie" zwischen zwei Feldkarten.
+D.h., die Feldkarten werden eingelesen, dann wird Punkt fuer Punkt
+die Asymmetrie gebildet und es werden verschiedene Werte in den
+File asym.dat geschrieben.
+
+brems_mc_alt.f
+--------------
+Programm erwuerfelt Brems-Ereignisse. Fragt nach den
+Partner-Elektronen von Photonen, die durch einen Kollimator
+passen, verfolgt diese Elektronen durch eine Feldkarte,
+cmap**.map, sucht nach dem Schnittpunkt der Elektronen-Bahn
+mit einer Bildlinie (ab,bb) und erstellt ein Histogramm,
+normiert auf die Zahl der Zuege und eine Hist-Breite von .002.
+das in brems_mc.dat ausgegeben wird.
+Das Programm ruft Routinen:
+su_trace_track.f: Bestimmt die Bahn des Elektrons track(2,300)
+in der Felkarte.
+Es ruft su_such_feld.f, das den Feldwert an einem Ort
+interpoliert. Das Ergebnis steht in track(2,300).
+su_brems_mc.f  : Erwuerfelt das Brems-Ereignis, bestimmt
+den Startpunkt und -winkel des PBE in Ablenkrichtung und
+den Winkel des Brems-Photons. Letzterer wird benoetigt,
+um ds/(dk dO) (br2bs) als Gewicht des Ereignisses
+zu bestimmen.Diese Routine steht in diesem File!
+su_cut_bildlin.f: Bestimmt den Schnittpunkt mit der
+Bildlinie und den Abstand von Index_x = 0 in Index-Einheiten.
+Letzterer wird fuer die Erstellung des Histogramms benoetigt.
+Diese Routine steht auch in diesem File !
+In fort.18 steht eine y-Verteilung als Hoehe/cm, Ereignisse
+
+brems_mc_el.f
+-------------
+Programm erwuerfelt Brems-Ereignisse in den einzelnen
+Detektoren fuer zufaellige
+Elektronenenergien. Fragt nach den dazugehoerigen
+Photonen, die durch einen Kollimator
+passen, verfolgt dann die Elektronen durch eine Feldkarte,
+omap**.map, sucht nach dem Schnittpunkt der Elektronen-Bahn
+mit der Detektorlinie und erstellt Histogramme fuer die getroffenen
+Detektoren als normierte Ereignisse ueber der El-Energie.
+Die Hisogramme werden in brems_mc_el.dat ausgegeben.
+Aus den Histogrammen werden mittlere Energie und sigma
+bestimmt und im File fort.16 ausgegeben
+In dem Programm werden ausschliesslich Index-Einheiten benutzt,
+ausser in der Routine su_brems_mc.f .
+Das Programm ruft Routinen:
+su_trace_track.f: Bestimmt die Bahn des Elektrons track(2,300)
+in der Felkarte.
+Es ruft su_such_feld.f, das den Feldwert an einem Ort
+interpoliert. Das Ergebnis steht in track(2,300).
+su_brems_mc.f  : Erwuerfelt das Brems-Ereignis, bestimmt
+den Startpunkt und -winkel des PBE in Ablenkrichtung und
+den Winkel des Brems-Photons. Letzterer wird benoetigt,
+um ds/(dk dO) (br2bs) als Gewicht des Ereignisses
+zu bestimmen.
+su_cut_bildlin.f: Bestimmt den Schnittpunkt mit der
+Bildlinie und den Abstand von Index_x = 0 in Index-Einheiten.
+Diese Index-Einheiten werden nach Massgabe eines Files,
+z.B. detektor_eichung.dat, in den Detektoren entsprechende
+Energie-Werte umgesetzt.
+Der File z.B. "deichung_140.dat" wird nach Massgabe eines
+Resultats
+aus brems_mc.f (fort.17 -> eich140.dat)in eich_leiter.f
+erstellt.
+Er enthaelt:  Det.Nr.,Em/MeV,dE,Ortm/Index_x,dOrt
+Die zugeordneten El.Energien werden
+dann zur Einordnung in das Histogramm benutzt.
+Die Dimension der Histogramme wird ebenfalls aus dem Eich-file
+bestimmt.
+--
+Damit liefert das Programm Histogramme fuer die einzelnen Detektoren,
+d.h. Elektronen-Energien, die den Zaehler treffen und die Anzahl der
+Treffer. Ergebnisse sind:
+In File brems_mc_el.dat die Histogramme fuer die einzelnen Zaehler,
+getrennt durch   *   *  .
+Im File fort.16 steht (Orte in cm) Z#,Energie/cm, Schwerpkt/cm, sigma/cm,
+minimaler und maximaler Ort und deren Differenz.
+Im File fort.17 Z#,E/Mev, Schwerpkt/index,sigma/index
+
+brems_mc.f
+----------
+Programm erwuerfelt Brems-Ereignisse fuer feste
+Photonenenergien. Fragt nach den
+Partner-Elektronen von Photonen, die durch einen Kollimator
+passen, verfolgt diese Elektronen durch eine Feldkarte,
+omap**.map, sucht nach dem Schnittpunkt der Elektronen-Bahn
+mit einer Bildlinie (ab,bb) und erstellt ein Histogramm,
+normiert auf die Zahl der Zuege und eine Hist-Breite von .002.
+das in brems_mc.dat ausgegeben wird. Man erhaelt also
+ein Histogramm Elektronenort auf der "Bildlinie" fuer
+feste Photonenenergien.
+Das Programm ruft Routinen:
+ su_trace_track.f: Bestimmt die Bahn des Elektrons track(2,300)
+ in der Felkarte.
+ Es ruft su_such_feld.f, das den Feldwert an einem Ort
+ interpoliert. Das Ergebnis steht in track(2,300).
+ su_brems_mc.f  : Erwuerfelt das Brems-Ereignis, bestimmt
+ den Startpunkt und -winkel des PBE in Ablenkrichtung und
+ den Winkel des Brems-Photons. Letzterer wird benoetigt,
+ um ds/(dk dO) (br2bs) als Gewicht des Ereignisses
+zu bestimmen.
+ Diese Routine steht in diesem File!
+ su_cut_bildlin.f: Bestimmt den Schnittpunkt mit der
+ Bildlinie und den Abstand von Index_x = 0 in Index-Einheiten.
+ Letzterer wird fuer die Erstellung des Histogramms benoetigt.
+ Diese Routine steht auch in diesem File !
+In fort.18 steht eine y-Verteilung als Hoehe/cm, Ereignisse
+****
+Damit liefert das Programm die intrinsische Aufloesung folgend aus der
+Optik (bis Bildlinie), dem Bremsstrahl-Prozess und der Kollimation. Es wird fuer
+mehrere Elektronen-Energien gerechnet.
+Die Ergebnisse sind:
+In File brems_mc.dat stehen die Histogramme in Ort/index-x und
+Ereignisse (gewichtet). Die einzelnen Histogramme sind durch *   *
+getrennt.
+Im File fort.16 steht (Orte in cm) Energie/MeV, Schwerpkt/cm, sigma/cm,
+minimaler und maximaler Ort und deren Differenz.
+Im File fort.17 E/Mev, Schwerpkt/index,sigma/index
+
+brems_mc_kreis.f
+----------------
+Programm erwuerfelt Brems-Ereignisse. Fragt nach den
+Partner-Elektronen von Photonen, die durch einen Kollimator
+passen, verfolgt diese Elektronen durch ein Feld (Geraden,
+Kreise), sucht nach dem Schnittpunkt der Elektronen-Bahn
+mit der Bildlinie (0,0) und erstellt ein Histogramm,
+normiert auf die Zahl der Zuege und eine Hist-Breite von .002.
+das in brems_mc_kreis.dat ausgegeben wird.
+Das Programm ruft die Routine:
+  su_brems_mc.f : Erwuerfelt das Brems-Ereignis, bestimmt
+  den Startpunkt und -winkel des PBE in Ablenkrichtung und
+  den Winkel des Brems-Photons. Letzterer wird benoetigt,
+  um ds/(dk dO) (br2bs) als Gewicht des Ereignisses
+  zu bestimmen.
+  Diese Routine steht in diesem File!
+  Der Abstand von Index_x = 0 in Index-Einheiten wird bestimmt.
+  Letzterer wird fuer die Erstellung des Histogramms benoetigt.
+
+  In fort.16 stehen die Parameter der ermittelten Response als
+  Energie des PBE/MeV, Schwerpunkt, sigma, Orte min,max,diff/cm
+
+detektor_geo.f
+--------------
+Programm erstellt eine Datenliste zum Zeichnen der
+Detektoren in einem GLE-Plot. Basis sind die Dimensionen
+gegeben in Zeichnung endpoint_d_20.dwg
+Laden als:
+Das Ergebnis (Plot-File) steht in detektor_geo.geo
+
+eich_leiter.f
+-------------
+Programm benutzt ein Rechenergebnis aus brems_mc
+z.B. gerechnet mit omap140.map fuer E_el 10 bis 170 step 2,
+das in einer Liste  E/Mev, Lage_Max/Index_x, sigma/Index_x
+steht.
+Es ordnet es den Inedx_x-Orten der Detektoren zu (reine
+Gometrie):
+1. Detektor bei Index_x 18.79, letzter (47.) bei 80.47,
+alle Detektoren haben die Breite +- 0.62 Index_x, und den
+Abstand 1.34 Index_x .
+Es werden bestimmt: Die Rand- und der Mitte-Energiewert.
+Als Ergebnis im File eich_leiter.dat steht
+# des Detektors (von 1-47), der Mittelwert/MeV, die Randwerte/MeV
+und deren Differenz/MeV als energetische Detektorbreite.
+Benoetigt wird also der Ergebisfile aus brems_mc (!in Index_x!)
+dort fort.17 umbenannt z.B. in max_sig_14.dat.
+
+et_km_mt.f
+----------
+Programm prueft, wie der Strahl durch
+Endpoit-Tagger- ET, Korrektur-Magnet- KM, Main-Tagget- MT,
+zum Strahlfaenger gelangt.
+Rechnung mit Kreisen und Geraden.
+MT hat den Eintritt bei (x,z)=(0,0), er lenkt in x-Richtung,
+wie auch MT, ab.
+Die z-Richtung ist die Richtung des einlaufenden Strahls.
+ET und KM werden duch jeweils zwei z-Werte gegeben,
+die den Eintritt und Austritt angeben. Die Ablenkung wird durch
+Radien angegeben, die alle positiv anzusetzen sind, obwohl
+KM zuruecklenkt!
+Der Soll-Eintritt in ET ist bei x=0, in MT bei (z,x)=(0,0)
+Die Geoemetrieangaben stehen in einem File etkmmt.geo
+alle Laengen in cm
+als ET: z-Eintritt und Austritt
+    KM: z-Eintritt und Austritt
+    MT: Eintrittskante: xe,ze,re  (Mittelpunkt und Radius)
+        Austrittskante: xa,za,ra (Mittelpunkt und Radius)
+        Austritt ist regulaer bei xmta0=225
+    Ablenkradien: ret,rkm,rmt  (alle positiv angeben)
+Das Ergebnis steht in et_km_mt.dat
+
+feld_kontur.f
+-------------
+Programm fasst die Programme
+    feld_kontur_punkte.f  und  feld_kontur_linie.f     zusammen.
+Es liefert ebenso die Ergebnisfiles fort.11 und fort.12
+                feld_kontur_punkte.f
+Programm sucht in mit convert_map.f aus map.map erstellten
+File omap**.map (umgedrehte cmap)
+eine Daten-Liste fuer Punkte mit gleichem Feldwert.
+Hierzu werden solche Koordinaten aufsteigend und absteigend
+entlang fester x- und z-Werte gesucht und im File fort.11
+abgelegt. Damit sind diese Werte dann  !!nicht!! entlang
+Linien geordnet sondern in der Reihenfolge der Findung.
+                feld_kontur_linie.f
+Setzt die ungeordnete Punktefolge aus feld_kontur.f, fort.11,
+in Linien mit festem Feld um. Das Ergebnis steht dann in fort.12
+
+feld_schnitt.f
+--------------
+Programm benutzt Feldkarte cmap**.map und bestimmt
+Schnitte Feld=F(Ort)
+cmap benutzt Laborkoordinaten x(horizontal) und z(Strahlrichtung)
+dort steht iz,ix,Wert/Gauss.
+Ergebnis steht in fort.15
+
+map_omap.f
+----------
+Die gemessenen Feldkarten werden in Feldern map**.map
+abgelegt. Dieses Programm liest Karten map**.map ein, die durch
+entsprechendes Umkopieren von den Original-Karten z.B. map.map
+oder, wie sie aus der Messung hervorgehen,
+erhalten werden. Die Feldkarte wird
+umgeschrieben in praktischere Koordinaten.
+Die Feldwerte werden in ein Feld(Indexx,Indexz)
+eingeordnet. Der Ergebnisfile ist z.B. omap**.map
+(der Name kann frei gewaehlt werden), in dem die Achsen
+entsprechend dem Labor liegen.
+In map.map steht urspruenglich:
+3 Kommentar-Zeilen: Filename bei Messung
+                    Datum: Start der Messung
+                    Zeit : Ende der Messung
+Dann folgen Zeilen mit Index1, Index2, Feldwert/Gauss
+wobei die Indices die Inkrementschritte der Koordinatenmaschine
+ab einem maschineneigenen Nullpunkt zaehlen.
+Ein Inkrementschritt der Koordinatenmaschine entspricht 0.2211 mm
+(hier in data abgelegt).
+Die erste Achse liegt im Labor _|_ zur Eintrittskante des
+Endpoint-Taggers, entspricht dort also der z-Achse,
+sie zaehlt entgegengesetzt der Strahlrichtung.
+Die zweite Achse entspricht im Labor der x-Achse, ||
+Eintrittskante,
+sie zaehlt in Richtung der Ablenkung. Diese Richtung ist
+entgegengesetzt zur Laborrichtung (Strahleintritt in den ET
+rechts)
+wird aber aus Darstellungsgruenden so beibehalten,
+d.h. der Enpointtagger lenkt in den Rechnungen nach rechts ab,
+in der praktischen Installation aber nach liks, wir der
+Main Tagger, MT.
+Es treten in manchen Original-Listen Anfangs- und End-Feld-Werte
+ohne Bedeutung auf, oder es fehlt der letzte Wert.
+Diese Werte sind zwar unwichtig, werden aber durch lineare
+Interpolation bestimmt.
+
+raytrace_feld.f
+---------------
+ Programm sucht Elektronenbahn in einer Feldkarte, vorgegeben durch
+ omap**#.map.
+ Ergebnis steht in File raytrace.dat
+
+raytrace_focus.f
+----------------
+Programm sucht 2 Elektronenbahnen in einer Feldkarte, vorgegeben
+durch omap**.map.
+die beiden Bahnen werden bestimmt fuer Sollwinkel + und - einen
+kleinen Winkelschritt. Danach wird der Schnittpunkt
+beider Bahnen als Focus gesucht.
+Die Rouitine liefert eine Bahn als Liste (x,z) fuer einen
+Startwinkel (Index id). Diese Bahnen werden fuer das
+Plotprogramm raytrace_focus.gle in das Feld bahn(2,2,300)
+kopiert. Dabei ist
+1.Index id d.h. bezeichnet den Startwinkel der Bahn
+2.Index x,z
+3.Index  Laufindex
+Der Inhalt von bahn(2,2,300) wird in fort.20 abgelgt.
+Ergebnis fuer die Schnittpunkte im File fort.14
+
+such_feld.f
+-----------
+Programm nutzt die Routine su_such_feld, um Feldwerte
+fuer vorgegebene Orte zu finden
+Nach Initialisierung der Routine wird nach Eingabe eines
+Punktes in der Feldkarte der Feldwert durch lineare
+Interpolatin bestimmt.
+

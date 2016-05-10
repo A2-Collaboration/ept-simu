@@ -1,0 +1,21 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos tl
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "E/\,MeV" hei .7
+  ytitle "Bild-Ort\,/cm" hei .6
+  title "je 20000 Zuege, omap062,061,060.map, Eo=1.6GeV" hei .6
+  data mc062.dat d1
+  data mc061.dat d2
+  data mc060.dat d3
+  d1 marker fcircle msize .2 key "2 Spulen im KM"
+  d2 marker cross msize .4 key "1 Spule im KM"
+  d3 marker square msize .3 key "keine Spule in KM"
+end graph
+amove xg(35) yg(20)
+set hei .6
+text Dispersion ~ 1.1 MeV/cm
+amove xg(55) yg(-4)
+set hei .5
+text disp.gle

@@ -1,0 +1,7 @@
+
+Eichungen von EPT
+-----------------
+
+Die Eichungen stehen in den Files deichung_***.dat und ***.cal
+
+Als  Z#, E/MeV, dE/MeV,

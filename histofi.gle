@@ -1,0 +1,10 @@
+size 20 20
+begin graph
+  xaxis hei .6
+  yaxis hei .6
+!  data histofi.dat d1
+   data hist1421.dat d1
+   data hist1420.dat d2
+  d1 marker fcircle msize .2
+  d2 marker wcircle msize .2
+end graph

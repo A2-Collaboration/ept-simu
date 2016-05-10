@@ -1,0 +1,8 @@
+size 20 20
+begin graph
+  xaxis hei .6 min 24 max 50
+  yaxis hei .6
+  data brems_mc_el.dat d1
+  d1 line
+end graph
+  

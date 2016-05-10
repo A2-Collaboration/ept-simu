@@ -1,0 +1,14 @@
+size 20 20
+sub mark_subl mysize mdata
+  gsave  			! save font and x,y
+  box mysize mysize justify cc 
+  grestore	       	        ! restores font and x,y
+end sub
+define marker myname mark_subl
+begin graph
+      xaxis hei .6
+      yaxis hei .6
+        data asym.dat d1 d2
+!	let d2 = d2*.01
+	d1 marker myname mdata d2  
+end graph	

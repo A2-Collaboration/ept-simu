@@ -1,0 +1,22 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos tl
+  xaxis hei .6 min 10 max 180
+  yaxis hei .6 min 10 max 85
+  xtitle "E_{el}\,/MeV" hei .6
+  ytitle "Ort auf Detektorlinie\,/Inedx_{x}" hei .6
+  title "Detektor-Eichung fuer omap140.map, omap130.map" hei .6
+  data eich140.dat d1 d2
+  let d10 = d1+d2
+  let d11 = d1-d2
+  d1 line key "intrinsische Aufloesung 140"
+  d10 lstyle 2
+  d11 lstyle 2 
+  data deichung_140.dat d3=c2,c4 d4=c2,c3 d5=c2,c5
+  d3 marker fcircle msize .1 err d5 herr d4 key "Detektor Aufloesung 140"
+  data deichung_130.dat d7=c2,c4 d8=c2,c3 d9=c2,c5
+  d7 marker wcircle msize .1 err d9 herr d8 key "Detektor Aufloesung 130"
+  
+end graph
+amove xg(140) yg(2)
+text max\_sig.gle

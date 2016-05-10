@@ -1,0 +1,24 @@
+! zeigt Strahlen durch ET_KM_MT und die optischen Kanten
+size 20 20
+begin graph
+xaxis min -250 max 550 hei .6
+yaxis min -100 max 700 hei .6
+!xaxis min 270 max 400 hei .6
+!yaxis min 350 max 700 hei .6
+data bahn1.dat d2
+data bahn2.dat d3
+data bahn3.dat d4
+d2 lstyle 2
+d3 lstyle 3
+d4 lstyle 4
+data kanten.geo d11
+d11 line lwidth .01
+data sollstrahl.dat d10
+d10 lstyle 4
+data rotafi.dat d12
+!data x.dat d13
+d12 line
+!d13 line
+end graph
+amove xg(482.2) yg(320.)
+

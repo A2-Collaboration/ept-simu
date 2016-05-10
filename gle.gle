@@ -1,0 +1,7 @@
+size 20 20
+amove 1 1
+box 18 18
+amove 5 5
+set hei .7
+text "detector"
+  

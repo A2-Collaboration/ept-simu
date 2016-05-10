@@ -1,0 +1,7 @@
+size 20 20
+begin graph
+xaxis min -10  max 90 hei .6
+yaxis min -10  max 90 hei .6
+data polschuh_cm.geo d1
+d1 line
+end graph

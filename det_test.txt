@@ -1,0 +1,109 @@
+
+Test-Protokoll zu den Endpoint-Tagger-Detektoren.
+=================================================
+
+Test erfolgte mit Sr90-Quelle (Zerfall ueber Y90, beta mit Max-Energie
+2.282 MeV).
+Test-Anordnung:   Quelle-Detektor1-Detektor2
+Detektor1 wird in Koinzidenz mit Detektor2 ausgelesen. Dann haben die
+Elektronen Detektor1 durchdrungen und etwa 1MeV verloren (Detektor-Dicke
+6mm). Dieses Signal wird benutzt, es wird mit einem Analog-Scope gemessen.
+
+Die Detektoren werden in der Reihenfolge des Tests nummeriert. Detektor1
+wird zunaechst stets mit 1kV betrieben, die daraus folgende Signalhoehe
+wird notiert, und gegebenenfalls die Spannung fuer eine Signalhoehe von
+100 mV bestimmt. Die Signalhoehen werden geschaetzt als etwa Mitte des 
+Signalbandes.
+
+Die Detektoren wurden auf Lichtdichtigkeit geprueft und gegebenenfalls
+lichtdicht gemacht. Fehlende Lichtdichtigkeit zu Anfang wird mit -
+gekennzeichnet.
+
+Fuer Detektoren, die beim ersten Test eingebaut waren, wird die 
+Position angegeben
+
+Buchstaben bedeuten:
+R von Rudolf geklebt
+J von Juergen geklebt
+  diese Angaben sind nur Stichproben. Rudolf hat etwa 15 bis 20 Detektoren
+  nachpoliert und geklebt.
+G mit Gel-Interface zwischen Lichtleiter und PM.
+F Multiplier mit Feder angedrueckt, sonst nur mit Schaumstoff.
+
+------------------------------------------------------------------------
+Detektor#   Signal-1KV   Signal-100mV   Lichtdichtigkeit   Positons-#
+               mV            kV         vor dem Test        
+	       
+   1          100                           +
+   2          170                           -
+   3          100                           +
+   4           70                           -
+   5	       70			    +
+   6	       50			    +
+   7	       40           1.224	    -
+   8	       70     	    1.100	    -
+   9	       50	    1.150	    +
+  10	      100	    		    -
+  11	       50	    1.190	    -
+  12	       75	    1.050	    -
+  13	      120	    		    -
+  14	       90	    1.050	    -
+  15	      100	    		    +
+  16	       50	    1.200	    -	(war 30mV ohne G)    FG
+  17	       70	    1.080	    +
+  18	       80	    1.050	    +
+  19	       50	    1.150	    +
+  20	       50	    1.150	    -
+  21	       90	    		    -
+  22	       70           1.100	    +
+  23	       40	    1.145	    -
+  24	       60	    1.110	    -
+  25	       80	    1.050	    -
+  26	       75	    1.100	    -
+  27	      140	                    -
+  28	       75	    1.030	    -
+  29	       70	    1.080	    +            A9
+  30	      100	    		    -		 A11
+  31	       60	    1.110	    -		 A3    J
+  32	      110	    		    -		 B13
+  33	       70	    1.100	    -		 B15
+  34	       80	    1.050	    +		 C1
+  35	       70	    1.110	    -		 C3
+  36	       50	    1.130	    -		 C5    R
+  37	       70	    1.110	    -		 C7    J
+  38	       60	    1.120	    -		 C9    R
+  39	       75	    1.070	    -		 C11   R
+  40	       70	    1.090	    -		 C13   R
+  41	      100	    1.000	    +		 A5    J
+-------------------------------------------------------------------------
+  42	      175           0.910           +		       FG
+  43	       70	    1.110	    		       F
+  44	      175	    0.900			       F
+  45	       30	    1.250			       F
+  46	       50	    1.140			       F
+  47	      100	    1.000			       F
+  48	       70	    1.080			       F
+  49	      100	    1.000			       F
+  50	      120	    0.980			       F
+  51	       70	    1.070			       F
+*************************************************************************  
+
+
+
+  Hier folgen die Detektoren, bei denen die Huelsen noch ausgedreht werden
+  sollten, mit abgehobener Nummerierung. Diese Detektoren wurden umgeruestet
+  und dann ab #42 in freier Reihenfolge eingordnet und so bezeichnet.
+
+  50	       70	    1.080	    +	         A13
+  51	      100	    1.000	    -		 A15
+  52	      100	    1.000	    -		 B1
+  53	       30	    1.250	    +		 B3
+  54	      150	         	    -		 B5
+  55	       70	    1.090	    +		 B7
+  56	       50	    1.160	    -		 B9
+  57	       70	    1.080	    -		 B11
+  58	       90	    1.040	    -		 B6
+  59	      150	    0.950	    +		 B8
+  60	      130	    0.950	    -		 B10    J
+  
+  Der Detektor B12 fehlt, A7 ist tot

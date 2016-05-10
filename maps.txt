@@ -1,0 +1,61 @@
+
+
+ Liste enthaelt die Namen der Feldkarten, die am Endpoint Tagger,
+ ET, gemessen wurden. Die erste Spalte gibt die Stromwerte am
+ Netzgeraet. Diese Kennung steht jeweils am Anfang der Original-
+ Files von Peter Jennewein. Wobei der End-Buchstabe bedeutet
+ in welchem Zustand der Korrekturmagnet, KM, war. Diese Buchstaben-Kennung
+ spiegelt sich in der endgueltigen Kennung **# der Feldkarten,
+ map**#.map und omap**#.map als die Ziffer #.
+ ** bedeuten das ca-Maximal-Feld im ET in kGauss.
+ Es bedeutet
+ a ohne KM, # nicht vorhanden, Feldkarte ist in z (Strahlrichtung)
+                               groesser als die Folgenden
+ b beide Spulen des KM in Serie zum ET, #=2 (2 Spulen)
+ c eine Spule des KM ....             , #=1 (1 Spule)
+ d KM nicht erregt                    , #=0 (keine Spule)
+ 
+ In der dritten Spalte steht die Nummer des Eintrags der e-mail,
+ die die Original-Karte enthaelt, im Verzeichnis   tagger .
+ 
+ In der vierten Spalte steht das Feld im KM in KG, das ist nur sinnvoll
+ fuer b und c, also auch fuer #=1,2
+
+   Strom      **#  Nummer  Feld im     Name wie        Hallsonde
+                           KM in KG    benutzt         Feldwert/Gauss
+
+  6de0a.dat   14    1071               omap14.map
+  6de0b.dat   142   1138   1.810       omap142.map       14259.79
+  6de0c.dat   141   1123   1.140       omap141.map	 14233.41
+  6de0d.dat   140   1146               omap140.map       14233.4
+----------------------------------
+  5440a.dat   13    1080               omap13.map
+  5440b.dat   132   1128   1.563       omap132.map	 12949.66
+  5440c.dat   131   1125   0.891       omap131.map	 12968.77
+  5440d.dat   130   1147               omap130.map       12997.6
+---------------------------------
+  4790a.dat   12    1078               omap12.map
+  4790b.dat   122   1131   1.407       omap122.map	 12073.29
+  4790c.dat   121   1126   0.758       omap121.map	 12116.46
+  4790d.dat   120   1148               omap120.map       12127.4
+---------------------------------
+  3cb0a.dat   11    1074               omap11.map
+  3cb0b.dat   112   1132   1.245       omap112.map	 11160.83
+  3cb0c.dat   111   1137   0.643       omap111.map	 11065.81
+  3cb0d.dat   110   1150               omap110.map       11143.6
+---------------------------------
+  3600a.dat   10    1072               omap10.map
+  3600b.dat   102   1127   1.127       omap102.map	 10204.98
+  3600c.dat   101   1157   0.576       omap101.map	 10327.09
+  3600d.dat   100   1154               omap100.map       10319.8
+--------------------------------
+  29a0a.dat    8    1073               omap8.map
+  29a0b.dat   082   1133   0.886       omap082.map	  8158.44
+  29a0c.dat   081   1158   0.445       omap081.map	  8172.00
+  29a0d.dat   080   1152               omap080.map        8173.3
+--------------------------------
+  1ef0a.dat    6    1081               omap6.map	  
+  1ef0b.dat   062   1139   0.658       omap062.map	  6076.06
+  1ef0c.dat   061   1160   0.333       omap061.map	  6147.05
+  1ef0d.dat   060   1146               omap060.map        5753.0
+--------------------------------  

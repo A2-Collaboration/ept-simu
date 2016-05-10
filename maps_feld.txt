@@ -1,0 +1,35 @@
+
+In diesem File sind das Maximalfeld und das Feld am Ort der Hall-Sonde
+(47.3699989  45.1100006, Index), deren relative Differenz und der
+Spulenstrom fuer alle omap***.map Feldkarten angegeben
+
+   Feldkarte    Max.Feld   Hall-Sonde   Abweichung  Strom
+                 Gauss     Feld/Gauss     %o          A
+
+  omap140.map   14354.60    14233.41      8.44      171.68
+  omap141.map   14354.60    14233.41      8.44
+  omap142.map   14387.93    14259.79      8.91
+  
+  omap130.map   13196.01    12997.61     15.03	    131.64	
+  omap131.map   13068.37    12968.77      7.62
+  omap132.map   13045.19    12949.66      7.32
+
+  omap120.map   12384.45    12127.38     20.76	    111.82
+  omap121.map   12230.41    12116.46      9.32
+  omap122.map   12213.29    12073.29     11.46
+  
+  omap110.map   11454.68    11143.63     27.15       94.83
+  omap111.map   11262.01    11065.81     17.42
+  omap112.map   11344.08    11160.83     16.15
+  
+  omap100.map   10680.04    10319.83     33.73       84.38
+  omap101.map   10672.85    10327.09     32.40
+  omap102.map   10495.65    10204.98     27.69
+
+  omap080.map    8432.00     8173.29     30.68       65.04
+  omap081.map    8451.64     8172.00     33.09
+  omap082.map    8403.93     8158.44     29.21
+
+  omap060.map    5988.72     5752.97     39.36       48.34
+  omap061.map    6404.29     6147.05     40.17
+  omap062.map    6246.31     6076.06     27.26

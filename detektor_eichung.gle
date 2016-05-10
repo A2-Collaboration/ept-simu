@@ -1,0 +1,11 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos tl
+  xaxis hei .6 !min 10 max 40
+  yaxis hei .6 !min 15 max 30
+  xtitle "Detektor-Number" hei .6
+  ytitle "E_{el}/MeV" hei .6
+  title "Detector-Calibration for omap140.map" hei .6
+  data detektor_eichung.dat d3 d4  
+  d3 marker wcircle msize .12 err d4
+end graph

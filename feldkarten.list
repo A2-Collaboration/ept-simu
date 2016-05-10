@@ -1,0 +1,20 @@
+
+Werte-Liste zu den Feldkarten
+
+  Name        Einstellung       Ampere   Feldwert/Gauss    
+  (z.B.                                 
+ omap060.map)  hex   dez                zentral   Messpunkt
+ 
+ omap060     1ef0     7920	48.34	 6073	   5756		
+ omap080     29a0    10656	65.04	 8077	   8178
+ omap100     3600    13824	84.38	10220     10330
+ omap110     3cb0    15536	94.82	11047	  11154
+ omap120     4790    18320     111.82	12044	  12136
+ omap130     5440    21568     131.64	12936	  13001
+ omap140     6de0    28128     171.68	14244	  14220
+ 	     ffff    65536     400.
+ 
+ Der zentrale Feldwert wurde aus omap**0.map zwischen den 
+ Indexwerten x=(39,41) y=(24,26) gemittelt
+ Der Messpunkt zwischen x=(46,49) y=(44,47) 
+ [72mm unter der obersten Polschuhecke]

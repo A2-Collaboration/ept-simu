@@ -1,0 +1,25 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos bl
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "E/\,MeV" hei .7
+  ytitle "Differenz-Ort\,/cm" hei .6
+  title "je 20000 Zuege, omap062,061,060.map, Eo=1.6GeV" hei .6
+  data mc062.dat d1
+  data mc061.dat d2
+  data mc060.dat d3
+!  d1 marker fcircle msize .2 key "2 Spulen im KM"
+!  d2 marker cross msize .4 key "1 Spule im KM"
+!  d3 marker square msize .3 key "keine Spule in KM"
+  let d10 = d2-d1
+  d10 line key "061-062"
+  let d11 = d2-d3
+  d11 lstyle 2 key "061-060"
+end graph
+amove xg(40) yg(-1.5)
+set hei .6
+text Dispersion ~ 1.1 MeV/cm
+amove xg(55) yg(-5.6)
+set hei .5
+text d\_disp.gle

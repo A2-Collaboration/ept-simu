@@ -1,0 +1,21 @@
+size 20 20
+begin graph
+  xaxis hei .6 !XSmin 27.1 max 27.25
+  yaxis hei .6 
+  ylabels off
+  xtitle "Ort auf Bildlinie (0,0)/cm" hei .6
+  ytitle "Gewicht" hei .6
+  title "cmap14.map, Eo=1.6\,GeV, E=50\,MeV" hei .6
+  data dbrems_mc.dat d1
+!  data hist_14_16_150.dat d1
+! data hist_14_16_155.dat d5
+!  data dist_3.dat d3
+!  data dist_4.dat d4
+!  data dist_5.dat d5
+  d1 marker wcircle msize .15
+!  d2 marker wcircle msize .3
+!  d3 marker fsquare msize .3
+!  d4 marker wsquare msize .3
+!  d5 line
+end graph  
+

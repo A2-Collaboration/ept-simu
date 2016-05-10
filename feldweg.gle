@@ -1,0 +1,8 @@
+! Darstellung des Felverlaufs entlang der Trajektorie
+size 20 20
+begin graph
+  xaxis hei .6
+  yaxis hei .6
+  data fort.22 d1=c3,c4
+  d1 line
+end graph

@@ -1,0 +1,7 @@
+size 20 20
+begin graph
+   xaxis hei .6
+   yaxis hei .6 max 160
+   data detektor_geo.geo d1
+   d1 line
+end graph

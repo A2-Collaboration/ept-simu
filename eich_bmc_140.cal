@@ -1,0 +1,49 @@
+
+ Eich File aus brems_mc.f. Feste Post-Bremsstrahlung
+ Elektronenenergien. Bremsprozess wird auf Radiator erwuerfelt.
+ Es gehen ein: Emittanz des einlaufenden Strahls, Vielfachstreuung,
+ Winkelverteilung aus dem B-Prozess. Intrinsische Aufloesung des
+ Spektrometrs ohne Einfluss der Detektoren.
+ Die Liste gibt die diskrten Energien der Elektronen, ihren 
+ Auftreffort auf der Detektor-Linie und das Sigma der Orts-
+ Streuung, letztere in Index_x-Einheiten. Diese Liste wird dann 
+ benutzt, um eine Eichung der Detektorleiter mit eich_leiter.f
+ aud der Basis der Detektorgeometrie zu finden.
+ 
+ 
+ El-En    Ort        sigma
+  MeV    Index_x    Index_x
+  
+  20.  16.3824768  0.236849561
+  25.  18.1903877  0.177243188
+  30.  20.1071548  0.141537592
+  35.  22.0790195  0.115075812
+  40.  24.0800705  0.0954952091
+  45.  26.1035404  0.081682846
+  50.  28.1411476  0.0701410621
+  55.  30.1871243  0.0623695888
+  60.  32.2308846  0.0542597026
+  65.  34.2777596  0.0474079587
+  70.  36.330864  0.0424821526
+  75.  38.3875885  0.0378385782
+  80.  40.4458084  0.0338122398
+  85.  42.5051231  0.0304763094
+  90.  44.562294  0.0272416323
+  95.  46.6198654  0.0237976126
+  100.  48.6825867  0.0210388526
+  105.  50.7553329  0.0185234938
+  110.  52.8316002  0.0164335389
+  115.  54.9098969  0.0146512939
+  120.  56.9891357  0.0131435506
+  125.  59.066761  0.0118680606
+  130.  61.1443367  0.0108321598
+  135.  63.2207642  0.0101077817
+  140.  65.2957077  0.00940847211
+  145.  67.3690948  0.00901905447
+  150.  69.4366531  0.00880241115
+  155.  71.498497  0.00862001441
+  160.  73.5595398  0.00825027004
+  165.  75.6250153  0.00806750078
+  170.  77.6997223  0.00783436187
+  175.  79.7917404  0.00787970237
+  180.  81.9244308  0.0083021177

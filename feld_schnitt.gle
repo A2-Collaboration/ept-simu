@@ -1,0 +1,19 @@
+size 20 20
+begin graph
+  key nobox hei .6 offset 7 5
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "x/cm" hei .6
+  ytitle "Feld/Gauss" hei .6
+  title "cmap14.map, relativ zu Basispunkt, || z-Kante=0" hei .6 dist 0
+  data feld_schnitt_z1.dat d1=c1,c3
+  data feld_schnitt_z5.dat d2=c1,c3
+  data feld_schnitt_z10.dat d3=c1,c3
+  data feld_schnitt_z15.dat d4=c1,c3
+  data feld_schnitt_z20.dat d5=c1,c3
+  d1 lstyle 2 key "z=-10.68"
+  d2 lstyle 3 key "z=-6.26"
+  d3 lstyle 4 key "z=-.73"
+  d4 lstyle 5 key "z=4.8"
+  d5 lstyle 6 key "z=10.33"
+end graph

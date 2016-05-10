@@ -1,0 +1,21 @@
+size 20 20
+begin graph
+  xaxis hei .6 min 24 max 60
+  yaxis hei .6
+  xtitle "E_{el}/MeV" hei .6
+  ytitle "hits in detector" hei .6
+  title "Eo=1600\,MeV, omap\_140.map, brems\_mc\_el.f" hei .6
+  data brems_mc_el.dat d1
+!  data bremsmcel140.dat d1
+!  d1 marker wcircle msize .2
+  d1 line
+end graph
+amove 14 1
+text brems\_mc\_el.gle
+amove xg(75.5) yg(.01)
+set hei .6
+text # 16
+amove xg(175.4) yg(.002)
+text #47 
+amove xg(26) yg(.002)
+text #1

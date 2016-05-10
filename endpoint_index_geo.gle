@@ -1,0 +1,21 @@
+size 20 20
+begin graph
+  xaxis min -20 max 80 hei .6 
+  yaxis min -10 max 90 hei .6
+  xtitle "Index z" hei .6
+  ytitle "Index x" hei .6
+  title "Polschuh, Kartenrand und Nullpunkt Ort" hei .6 
+  data polschuh.geo d1
+  data kartenrand.geo d3
+  d1 line
+  d3 lstyle 3
+end graph
+amove xg(44.48) yg(-1.94)
+marker wcircle .3
+amove xg(0) yg(100)
+set hei .6
+text Indices wie in cmap**.map benutzt
+amove xg(50) yg(-3)
+text Nullpunkt bei
+amove xg(50) yg(-8)
+text (44.48,-1.94)

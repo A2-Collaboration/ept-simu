@@ -1,0 +1,283 @@
+
+           --------------------------
+           ||  Der Endpoint-Tagger ||
+	   --------------------------
+
+Das Geraet, Endpoint-Tagger, ET, wird dem Glasgow-Tagger (Main Tagger, MT)
+vorgeschaltet. Es lenkt weiche Elektronen, E<170 MeV, nach links ab.
+Also in der gleichen Richtung wie der MT. Zwischen ET und MT ist ein
+Korrektur-Magnet, KM, notwendig, um die schwache Ablenkung des Hauptstrahls,
+Main-Beam, MB, im ET zu kompensieren.
+
+Der ET hat eine gerade Eintrittskante, die um 12 Grad gedreht ist. Also
+tritt der MB mit einem Winkel von 78 Grad in den ET ein.
+
+Im Labor ist die z-Achse die Richtung des MB vor den Taggern, die x-Achse
+liegt senkrecht dazu und zaehlt nach links positiv. In den meisten
+Abbildungen wird sie aber nach rechts positiv gezeichnet, da dies
+praktischer ist.
+
+Die CAD-Zeichnung endpoint/tagger_halle_m4.dwg zeigt die Gesamtanordnung.
+Dort ist die z-Achse um 12 Grad nach links unten gekippt. BD ist der
+beam-dump.
+
+Bearbeitung der Feldkarten des Endpointtaggers
+==============================================
+
+Feldkarten wurden von Peter Jennewein mit der alten Koordinatenmaschine
+MAGMA, Thomas Baumgaertner, 1983 (Ergaenzungen und Anleitungen spaeter
+von A.Reiter, 1999 und P.Jennewein, 2001, hinzugefuegt). Diese Maschine
+war parallel zur Eintrittskante vor dem ET aufgestellt.
+
+Die Feldkarten werden wie gemessen in Files map**.map abgelegt
+(** ist eine Kennung fuer das ungefaehre Maximalfeld, z.B.
+**=14 bedeutet 1.4T).
+Dort sind die Feldpunkte in der Reihenfolge gemessen:
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.............
+.............................................................
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+wobei hier die Zeilen-Zahl der z-Richtung im Labor entspricht, d.h.
+eine Zeile beschreibt die Bewegung || zur Eintrittskante des Magneten.
+Entlang der Spalten bewegt man sich etwa entgegen der Strahlrichtung
+(bis auf die Drehung des ET um 12 Grad).
+
+Die Liste enthaelt dann
+3 Kommentarzeilen:
+   (1) Name des Files bei der Aufnahme der Karte
+   (2) Datum der Aufnahme
+   (3) Uhrzeit
+dann Zeilen mit
+Index1  Index2  Feldwert/Gauss
+Index1 bewegt sich entgegen der etwa z-Richtung im Labor,
+Index2 bewegt sich in x-Richtung (entgegen der Ablenkrichtung)
+Die Indices entsprechen der Anzahl der Inkremente der Koordinatenmaschine
+gezaehlt ab einem Nullpunkt der Maschine. Ein Inkrement entspricht
+0.2211 mm.
+
+Die Original Indices, Iox, Ioz, der Messaparatur laufen in x-Richtung,
+also || zur Eintrittskante des Magneten:
+
+                Iox von  940   bis  4890
+                Ioz von -300   bis -2950
+				
+Dabei steht Ioz in der ersten Spalte von map**.map und
+Iox in der zweiten. Diese Indizes haben ein Inkrement von 50.
+Man kann sie also zu ganzen Zahlen reduzieren durch:
+
+                Ix = (Iox - 940)/50 + 1
+		Iz = (Ioz - (-2950))/50 + 1
+				
+		        1 <= Ix <= 80
+		        1 <= Iz <= 54
+			
+Ein Indexschritt entspricht 1.1055 cm (50*.02211).			
+Ioz und Iox laufen in der falschen Richtung, also entgegengesetzt zu z
+und x im Labor.
+Richtungsumkehr
+
+                Iz= 54 - Iz +1
+		Ix= 80 - Ix +1
+
+Mit Hilfe des Programms map_omap.f kann z.B. ein File map**.map in einen File 
+omap**.map oder mit frei waehlbarem Namen konvertiert werden. 
+Dabei steht ** fuer eine Kennung des
+ungefaehren Maximalfeldes (**=14 entspricht 1.4T).
+Der Ziel-File, z.B. omap**.map, enthaelt eine Kommentarzeile mit
+Maximum des x-Index (entspricht der Zeilenlaenge),
+Maximun des z-Index (entspricht der Spaltenzahl),
+die 3. Zahl ist das Inkrement in cm, hier also 50*0.2211mm=1.1055cm.
+Also entspricht ein Index-Schritt 1.1055cm.
+Dann folgt Ix, Iz, Feldwert/Gauss
+
+Hier laufen jetzt x und z in der Labordefinition,
+x || Feld-Eintrittskante in Ablenkrichtung,  
+z grob in Strahlrichtung (bis auf eine Drehung von 12 Grad
+des Magneten im Labor). In anderen Worten: diese Indices beziehen sich auf
+etwa-Starhlrichtung und die Eintrittskante des Magneten in Ablenkrichtung.
+
+Files ***.geo, die den Polschuh (mechanische Grenzen) passend zu den
+Feldkarten zeigen:
+polschuh_io.geo in Index-Einheiten passend zu omap**.geo.
+Hier steht der Endpoit-Magnet wie urspruenglich gemaint, d.h. mit den 
+Hebeoesen oben.
+
+Darstellung von Feldkarten:
+Die hierfuer benutzten Programme bereiten Files vor, die hernach mit GLE
+dargestellt werden koennen.
+Kontur-Plots
+Das Programm feld_kontur_punkte.f sucht in cmap**.map oder omap**.map
+mit Hilfe linearer Interpolation nach Punkten
+mit vorgegebenem Feldwert. Hierzu sucht es  erst entlang der
+Werte mit festem Index-z nach solchen Punkten  und dann ebenso entlang
+festem Index-x. Die gefundenen Koordinaten werden dann in der Reihenfolge
+der Findung in den File fort.11 geschrieben, aus dem sie dann in Files
+anderen Namens kopiert werden koennen.
+Eine Gruppe dieser Files kann dann mit kontur_punkte.gle dargestellt werden.
+Das Programm feld_kontur_linie liest diese Punkte-Files,
+ordnet sie und schreibt sie in den File fort.12. Dieser kann dann in
+Files lkontur**.dat kopiert und mit kontur_linien.gle geplottet werden.
+Natuerlich kann dann in dem Plotprogramm (GLE) von Index auf cm ,
+z.B. mit dem Inkrement 1.1055, umgeeicht werden.
+
+Die Programme feld_kontur_punkte.f und feld_kontur_linie.f sind
+in dem Programm feld_kontur zusammengefasst, das dann entsprechend
+die zwei Ergebnisfiles fort.11 und fort.12 erzeugt.
+
+Umeichen eines Files cmap**.map.
+Mit Hilfe des Programms cmap_in_cmap.f kann der Inhalt einer Feldkarte
+geandert werden, indem die einzelnen Elemente umgerechnet werden 
+Element_neu = (Element_alt +Summand) * Faktor. Das geht fuer die Indices und
+fuer die Feldwerte. Damit kann man z.B. durch Multiplikation der Indices mit
+einem entsprechendem Inkrement (siehe 1. Zeile in cmap**.map)
+Orts-Koordinaten erzeugen. Allerdings sind dann Alle Elemente in der Liste
+real !!!
+
+Bezugspunkt zwischen Indices und Ort des Magneten:
+
+Der ET Magnet hat eine gerade Eintrittskante, die am linken Ende kurz 
+und am rechten etwas laenger gebrochen ist. 
+Die Kante links mit der kurzen Brechung 
+dient als Bezugspunkt. In Koordinaten der Messaparatur liegt dieser
+Punkt bei (Iox,Ioz Original-Indices)
+
+           Iox      Index_x   893
+	   Ioz      Index_z  -776  -6.78  (die zweite Zahl
+	            entspricht 1.5 mm, um die die Hall-Sonde
+		    im Messarm gegen das Arm-Ende verschoben ist.
+		    1.5/.2211 = 6.784)
+      Damit
+           Ioz      Index_z  -782.78
+			  
+Die Umrechnung in Indices fuer omap**.map ist dann also (s.o.),
+wobei "b" in Ibx und Ibz fuer den Bezugspunkt steht : 
+
+           Ibx = 80-(Iox-940)/50    =  80.94
+	   Ibz = 54-(Ioz+2950)/50   =  10.66
+Dies sind also die Indexwerte fuer den Bezugspunkt (b). 
+	   
+Ray-Trace:
+
+Die Elektronen-Bahnen werden anhand der Feldkarten bestimmt.
+Dieses Ray-Tracing wird im Bereich der Feldkarte mit den oben
+definierten Index-Koordinaten  Ix, Iz, 
+also direkt mit Nutzung eines Files, z.B. omap**.map, durgefuehrt.
+
+Ein vernuenftiger Eintrittspunkt des Primaer-Strahls liegt in x 
+2.5 cm von der Brechung entfernt auf der Polschuhkante, also bei 
+Ibx + 2.26
+               Ieinx = 2.32, Ieinz = 10.66
+       
+Der Magnet ist um 12 Grad gedreht, also ist die Geradengleichung
+des Sollstrahls, Main-Beam MB,
+
+              Iz = 4.705*Ix -14.779
+
+Der Radiator liegt sinnvollerweise einige cm vor der Polschuhkante.
+
+Zusammenfassend haben wir die Werte
+
+              (x,z)/Index                  omap**.map
+Referenzpunkt                             (80.94,10.66)
+Startpunkt (Radiator) mit 78 Grad zur z-Achse
+Geradengleichung (a,b)                   (4.705,-14.779)
+Eintrittspunkt 
+   0 cm vor Polkante                       (5.41,10.66)
+  3cm          (dz=-2.714 )                (4.83,7.932)
+ 10cm                                      (3.484,1.614)
+
+Das Raytracing erfolgt dann nach Art Runge-Kutta mit Hilfe des 
+Programms raytrace_feld.f, in dem die Parameter fuer das Raytracing,
+Schrittweite und Zahl der Iterationen, natuerlich die Feldkarte und die
+Energie der Elektronen gewaehlt werden koennen.
+Es stellt sich heraus, dass fuer Runge-Kutta die Parameter
+     Schrittweite         =  0.11
+     Zahl der Iterationen =   5      sinnvoll sind.
+     
+     **********************************************************
+
+Im Programm 
+brems_mc.f wird die Lage des Radiators in cm vor
+der Polkante abgefragt.
+
+Die Grenze der Spule (Gesamtbreite 83mm) liegt bei etwa iz=3.152 
+	   
+Das Programm raytrace_feld.f bestimmt Bahnen innerhalb der Feldkarte.
+Hierbei benutzt es zwei Routinen
+su_trace_feld.f macht eine "Runge-Kutta" Bahnfindung. Es benutzt 
+die Routine su_such_feld.f, mit deren Hilfe der Feldwert fuer beliebige
+Indexzahlen (ixv,izv) durch lineare Interpolation bestimmt werden. 
+Diese Interpolation bestimmt zunaechst die die Vorgabe ixv umgebenden 
+Feldpunkte aus der Feldkarte (ix,iz),(ix+1,z),(ix,iz+1),(ix+1,iz+1).
+Es bestimmt dann erst zwei Werte bei ix und ix+1 und dann den Wert 
+dazwischen. Dann wird das bei iz und iz+1  und dazwischen wiederholt.
+Die zwei resultierenden Werte werden gemittelt. 
+Das Ergebnis von raytrace_feld.f steht im File raytrace.dat, der z.B.
+in bahn**.dat umbenannt wird und mit raytrace.gle dargestellt werden kann.
+Im Ergebnisfile wird er letzte Wert fuer Bahnen, die an der Grenze
+Iz = 1 enden linear auf Iz = -10 extrapoliert.
+
+Das Programm raytrace_focus.f bestimmt den Schnittpunkt zweier Bahnen,
+die um + und - einen Winkel von der Sollrichtung abweichen und somit 
+den Ort der Punkt-Punkt Abbildung. Es benutzt die Routinen
+su_trace_bahn.f, su_such_feld.f und su_find_focus.f .
+su_trace_bahn.f verfolgt die beiden (verschiedene Winkel) Bahnen
+und schreibt sie in ein Feld bahn(2,2,200). Dabei kennzeichnet der 
+erste Index die Bahnen, der zweite die Koordinaten Ix und Iz und der letzte
+ist der Laufindex. Hierzu benoetigt es, wie su_trace_feld.f die Routine 
+su_such_feld. Die Routine su_find_focus.f bestimmt dann den Schnittpunkt der
+beiden Bahnen. Im Hauptprogramm koennen die Energien veraendert werden.
+Die verschiedenen Inhalte des Feldes bahn(2,2,200) werden in fort.20 
+so abgelegt, dass sie mit raytrace_focus.gle dargestellt werden koennen.
+Die Schnittpunkte werden in fort.14 notiert, der ebenfalls vom gle-
+Progamm dargestellt wird.
+
+Das Programm dbrems_mc.f erwuerfelt Elektronenbahnen durch den Magneten.
+Dabei wird folgendermassen vorgegangen:
+Es werden die Emitanzen erwuerfelt,
+es wird die Vielfachstreuung erwuerfelt,
+Daraus folgt ein Punkt auf dem Radiator und ein Winkel, den das
+einlaufende Elektron dort hat. 
+Dann werden Photonen erwuerfelt, die durch einen Kollimator gehen.
+Die bis hierher benoetigten Groessen sind im File su_brems_mc.geo
+abgelegt als
+Emittanz x-Ort, x-Winkel, y-Ort, y-Winkel (in cm mrad)
+Radius-Kollimator/cm, Radiator <-> Koll /cm, t0_rad/cm, d_rad/cm .
+Dies geschieht in der Routine su_brems_mc.f:
+su_brems_mc.f(e0,k,tb,xr,txbe)
+mit e0,k einlaufende Elektronenenergie, Photonenenergie /MeV
+tb resultierender Photonenwinkel/rad, xr Radius auf dem Radiator,
+txbe horizontale Winkelkomponente (Ablenkrichtung) des PBE/rad.
+Daraus wird mit dbr2bs das Gewicht (dsigma/dOmega) des Ereignisses
+bestimmt, dann wird das Elektron mit dsu_trace_mc.f (entspricht
+su_trace_feld.f, nur hier wird doppelt genau gerechnet, 
+s.o., es wird das Ergebnis lediglich nicht
+in einen File, sondern in ein Feld track(2,300) geschrieben),
+su_cut_bildlin.f uebernimmt das track(2,300) und bestimmt den
+Schnittpunkt zwischen track und Bildlinie. Das Ergebnis ist dann ein
+Ort auf der Bild-Linie, der in einem Histogramm akkumuliert wird. 
+Die von 0 verschiedenen Elemente des Histogramms werden bein Durchlauefen
+einer Schleife fuer die PBE-Enregie fuer jede 
+Energie in den File brems_mc.dat so uebergeben, dass der
+von GLE verwertet werden kann ( d.h. zwischen den Ergebnissen steht
+    *     *).
+Fuer die Elektronenenergien, werden die jeweiligen Histogramme 
+ausgewertet und Momente davon in den File fort.16 geschrieben als
+Elektronenenergie/MeV, min-, max-Abstand, deren Differenz,
+Schwerpunkt und Varianz der Verteilung, alles in cm. Diese Files
+koennen in sigma_disp.gle dargestellt werden, z.B. indem man sie in 
+bild*.dat umbenennet.
+
+
+Das Programm et_basisoptik.f errechnet mit Kreisen und Geraden den Weg des
+Primaer-Strahls durch den Endpoint-Tagger, ET, einen Korrektur-Magneten, KM,
+und den main-tagger, MT, zum Beam-Dump. Am Austritt den MT ist einen
+Engstelle, dort ist ein Loch von 60mm Durchmesser, das eventuell etwas
+erweitert werden koennte. Davor liegt aber das Kapton Fenster des MT,
+das natuerlich auch nicht vom Hauptstrahl getroffen werden darf. Leider
+liegen keine guten, genauen Zeichnungen von der MT-Vakuumkammer vor.
+Die Geraete entlang dieses Strahlweges sind in der Auto-CAD Zeichnung
+tagger_halle_*.dwg abgelgt.

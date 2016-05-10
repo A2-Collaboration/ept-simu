@@ -1,0 +1,64 @@
+
+Verkabelung Endpoint-Tagger-Detektoren.
+=================================================
+
+Die Detektoren wurden in der Reihenfolge der Tests numeriert.
+In der Verkabelung sind sie hexa numeriert.
+Die folgende Liste gibt die Verbindung dieser Numerierungen
+und die geschaetzten notwendigen Hochspannungen fuer Signalhoehen 
+von 100 mV.
+
+Vier Detektoren mit den kleinsten Signalen <= 50 mV wurden nicht montiert
+(7,23,36,45)
+
+------------------------------------------------------------------------
+Detektor#   Kabel-#     Signal-100mV 
+               mV            kV      
+	       
+   1           A1           1.000     
+   2           A2           0.900    
+   3 	       A3           1.000    
+   4           A4           1.110    
+  23	       A5	    1.145  (19.7.12 gegen #5 getauscht)
+   6	       A6	    1.140
+   8	       A7     	    1.100
+   9	       A8	    1.150
+  10	       A9	    1.000
+  11	       A10	    1.190
+  12	       A11	    1.050
+  13	       A12	    0.980
+  14	       A13	    1.050
+  15	       A14	    1.000
+  16	       A15	    1.200
+  17	       A16	    1.080
+  18	       B1	    1.050
+  19	       B2	    1.150
+  20	       B3	    1.150
+  21	       B4	    1.010
+  22	       B5           1.100
+  24	       B6	    1.110
+  25	       B7	    1.050
+  26	       B8	    1.100
+  27	       B9	    0.960
+  28	       B10	    1.030
+  29	       B11	    1.080
+  30	       B12	    1.000
+  31	       B13	    1.110
+  32	       B14	    0.990
+  33	       B15	    1.100
+  34	       B16	    1.050
+  35	       C1	    1.110
+  37	       C2	    1.110
+  38	       C3	    1.120
+  39	       C4	    1.070
+  40	       C5	    1.090
+  41	       C6	    1.000
+  42	       C7           0.910
+  43	       C8	    1.110
+  44	       C9	    0.900
+  46	       C10	    1.140
+  47	       C11	    1.000
+  49	       C12	    1.000
+  50	       C13	    0.980
+  48	       C14	    1.080
+  51	       C15	    1.070

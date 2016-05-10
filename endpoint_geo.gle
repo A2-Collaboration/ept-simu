@@ -1,0 +1,20 @@
+size 20 20
+begin graph
+key nobox pos tr hei .5
+xaxis min 0 max 90 hei .6
+yaxis min -10 max 80 hei .6
+xtitle "Index_x" hei .7
+ytitle "Index_y" hei .7
+title "Geometry of endpoint-tgger" hei .7 
+data polschuh_io.geo d11
+d11 line key "limit pole"
+data feldkarte.geo d12
+d12 lstyle 2 key "limit field-map"
+data detektor_geo.geo d15
+d15 line lwidth .01 key "position of detectors"
+end graph
+set hei .5
+amove xg(65) yg(-20)
+text endpoint\_geo.gle
+amove xg(78) yg(52)
+text add-on

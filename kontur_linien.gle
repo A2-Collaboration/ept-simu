@@ -1,0 +1,44 @@
+size 20 20
+amove -1 -1.6
+begin scale .85 .85
+begin origin
+begin graph
+key nobox hei .7 pos tr
+size 28 28
+xaxis min -10 max 90 hei .8
+yaxis min -20 max 80 hei .8
+xtitle "x/Index" hei .8
+ytitle "z/Index" hei .8
+title "cmap14.map" hei .8
+!data lkontur14.dat d1
+!data lkontur135.dat d2
+!data lkontur13.dat d3
+!data lkontur125.dat d4
+!data lkontur12.dat d5
+!data lkontur10.dat d6
+!let d11 = d1*1.1055 key 
+!let d12 = d2*1.1055 key 
+!let d13 = d3*1.1055 key 
+!let d14 = d4*1.1055 key 
+!let d15 = d5*1.1055 key
+data asym3.dat d1
+data asym4.dat d2
+data asym5.dat d3
+!d1 marker circle msize .2 !line key "14.0 T"
+!d2 marker fcircle msize .2 !lstyle 2 key "13.5 T"
+d3 marker square msize .2 !lstyle 3 key "13.0 T"
+!d4 lstyle 4 key "12.5 T"
+!d5 lstyle 5 key "12.0 T"
+!d6 lstyle 6 key "10.0 T"
+!data polschuh_ic.geo d8
+!d8 line
+data polschuh_io.geo d9
+d9 line
+end graph
+amove xg(5.41) yg(10.66)
+aline xg(4.83) yg(7.946)
+amove xg(60) yg(-29)
+set hei .6
+text kontur\_linien.gle
+end origin
+end scale

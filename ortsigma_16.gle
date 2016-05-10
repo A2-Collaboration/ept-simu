@@ -1,0 +1,14 @@
+size 20 20
+begin graph
+  key nobox
+  xaxis hei .6 
+  yaxis hei .6
+  data deichung_140.dat d1=c4,c5
+  data brems_mcf_index.dat d2=c2,c3
+  data brems_mcb_index.dat d3=c2,c3
+!  let d12 = d2*2.424
+!  let d13 = d3*2.424
+  d1 marker wcircle msize .15
+  d2 marker fcircle msize .15
+  d3 marker wsquare msize .15
+end graph  

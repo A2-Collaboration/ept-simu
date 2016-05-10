@@ -1,0 +1,16 @@
+size 20 20
+begin graph
+   key nobox hei .6 pos br
+   xaxis hei .6 min 0 max 160
+   yaxis hei .6
+   xtitle "E_{el}\,/MeV" hei .6
+   ytitle "position on detector-line/cm" hei .6
+!   ytitle "\sigma\,\, Apparate-Funktion /cm" hei .6
+   title "Eo=1600MeV" hei .6 dist 0
+   data ort_sig_08.dat d1=c1,c2 d2=c1,c3
+   data ort_sig_14.dat d3=c1,c2 d4=c1,c3
+   d1 marker wcircle msize .2 key "0.8 T,  1.28 MeV/cm"
+   d3 marker fcircle msize .2 key "1.4 T,  2.27 MeV/cm"
+!   d2 marker wcircle msize .2 key "0.8 T"
+!   d4 marker fcircle msize .2 key "1.4 T"
+end graph

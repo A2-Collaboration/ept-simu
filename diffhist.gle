@@ -1,0 +1,13 @@
+size 20 20
+begin graph
+  key hei .6 nobox pos tr
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "Differenz-Feldwert/Gauss zwischen Karten" hei .6
+  ytitle "Anzahl" hei .6
+  title "Karten omap062,061,060, Feld-max. 6073 Gauss" hei .6
+   data hist0612.dat d1
+   data hist0610.dat d2
+  d1 marker fcircle msize .2 key "omap061-2"
+  d2 marker wcircle msize .2 key "omap061-0"
+end graph

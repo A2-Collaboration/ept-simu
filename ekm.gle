@@ -1,0 +1,33 @@
+! Auftragen von Bahnen durch ET-KM-MT
+! Die Daten-Files aus km_mt_mt.f enthalten
+! z,x,Winkel/grad,Ort auf Sollstrahl, Abweichung vom Sollstrahl
+!
+!
+size 20 20
+begin graph
+  xaxis hei .6 max 1000
+  yaxis hei .6 min -8 max 8
+  xtitle "entlang Sollstrahl/cm" hei .7
+  ytitle "Abweichung vom Sollstrahl /cm" hei .7
+  data et_km_mt.dat d1=c4,c5
+  let d20 = (0) from -200 to 1000 step 200
+  d20 lstyle 9
+!  data emm.dat d2=c4,c5
+  d1 line
+!  d2 lstyle 2
+end graph
+set lwidth .1
+amove xg(-6.3) yg(8)
+aline xg(-6.3) yg(4)
+amove xg(-6.3) yg(-8)
+aline xg(-6.3) yg(-4)
+amove xg(557) yg(8)
+aline xg(557) yg(6)
+amove xg(640) yg(8)
+aline xg(640) yg(3)
+amove xg(640) yg(-8)
+aline xg(640) yg(-3)
+amove xg(880) yg(8)
+aline xg(880) yg(4)
+amove xg(880) yg(-8)
+aline xg(880) yg(-4)

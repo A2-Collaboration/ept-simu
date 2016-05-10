@@ -1,0 +1,29 @@
+size 20 20
+begin graph
+  key nobox pos tr hei .6
+  xaxis min -10 max 90 hei .6
+  yaxis min -10 max 90 hei .6
+  xtitle "Index_{x}" hei .6
+  ytitle "Index_{z}" hei .6
+  title "omap140.map" hei .6
+  data feldkarte.geo d1
+  data raster5.geo d2
+  data polschuh_io.geo d3
+  data kontur140.dat d4
+!  data kontur13.dat d5
+  data fort.30 d6
+  d1 lstyle 2 key "Begrenzung Feldkarte"
+  d2 marker circle msize .02 
+  d3 marker fcircle msize .2 key "Ecken Polschuh"
+  d4 lstyle 1 key "Kontur 1T"
+!  d5 lstyle 3 key "Kontur 1.3T"
+  d6 lstyle 4 key "Bahn 10,170,10"
+end graph
+amove xg(5.41) yg(10.66)
+aline xg(3.484) yg(1.614)
+amove 15 1.5
+set hei .5 
+set font plsr
+text map.gle
+amove 4 4
+text Sollstrahl

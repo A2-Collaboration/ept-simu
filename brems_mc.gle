@@ -1,0 +1,15 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos tl
+  xaxis hei .6 min 47 max 50
+  yaxis hei .6
+  xtitle "Position on Detector-Line\,/cm" hei .6
+  ytitle "hits" hei .6 
+  title "omap080, Eo=1600 MeV" hei .6
+  data bhist_49.dat d1
+  data bhist_50.dat d2
+  data bhist_51.dat d3
+  d1 marker wcircle msize .2 key "49 MeV"
+  d2 marker fcircle msize .2 key "50 MeV"
+  d3 marker wcircle msize .2 key "51 MeV"
+end graph

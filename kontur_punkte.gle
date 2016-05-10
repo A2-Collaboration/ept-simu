@@ -1,0 +1,29 @@
+size 20 20
+amove 0 0
+begin scale .85 .85
+begin origin
+begin graph
+key nobox hei .7 pos tr
+xaxis min -10 max 90 hei .6
+yaxis min -10 max 90 hei .6
+xtitle "Index-x" hei .6
+ytitle "Index-z" hei .6
+title "cmap10.map" hei .6
+data kontur6.dat d1
+data kontur7.dat d2
+data kontur8.dat d3
+data kontur9.dat d4
+data kontur10.dat d5
+d1 marker circle msize .1  key "0.6 T"
+d2 marker fcircle msize .1 key "0.7 T" 
+d3 marker wsquare msize .1 key "0.8 T"
+d4 marker fsquare msize .1 key "0.9 T"
+d5 marker diamond msize .1 key "1.0T"
+data kartenrand_index.geo d10
+d10 lstyle 2
+end graph
+amove xg(60) yg(-35)
+set hei .6
+text kontur_punkte.gle
+end origin
+end scale

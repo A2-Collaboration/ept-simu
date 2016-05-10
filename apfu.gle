@@ -1,0 +1,15 @@
+size 20 20
+begin graph
+key nobox pos tl hei .5
+xaxis  hei .6
+yaxis hei .6
+xtitle "position on detectors /cm" hei .6
+ytitle "events" hei .6
+title "0.8\,T, Eo=1600\,MeV" hei .6
+data apfu_08_49.dat d1
+data apfu_08_50.dat d2
+data apfu_08_51.dat d3
+d1 marker wcircle msize .3 key "49\,MeV"
+d2 marker fcircle msize .3 key "50\,MeV"
+d3 marker wsquare msize .3 key "51\,MeV"
+end graph

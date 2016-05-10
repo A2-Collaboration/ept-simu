@@ -1,0 +1,6 @@
+size 20 20
+begin graph
+  data fort.10 d1=c1,c2 d2=c1,c3
+  let d3 = d2/2/15000
+  d1 marker wcircle msize .1 err d3
+end graph

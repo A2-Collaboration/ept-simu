@@ -1,0 +1,16 @@
+size 20 20
+begin graph
+   xaxis hei .6 min -10 max 90
+   yaxis hei .6 min -10 max 90
+   xtitle "Index_{x}" hei .6
+   ytitle "Index_{y}" hei .6
+   title "omap061.map - omap060.map" hei .6
+   data polschuh_io.geo d3
+   data fort.32 d1 d2
+   let d2 = d2*20
+   d1 marker square msize .0001 err d2 errwidth 0.01 herr d2 herrwidth 0.01
+   d3 line
+end graph
+set hei .6
+amove xg(5) yg(70)
+text realtive Differenz zu Werten bei (40,25)

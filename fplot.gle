@@ -1,0 +1,31 @@
+size 20 20
+begin graph
+  key nobox hei .4 offset 7 11
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "x/cm" hei .7
+  ytitle "Feld/Gauss" hei .7
+  title "cmap14.map" hei .7 dist 0
+  data l1.dat d1=c1,c3
+  data l2.dat d2=c1,c3
+  data l3.dat d3=c1,c3
+  data l4.dat d4=c1,c3
+  data l5.dat d5=c1,c3
+  data l6.dat d6=c1,c3
+  data l7.dat d7=c1,c3
+  data l8.dat d8=c1,c3
+  data l9.dat d9=c1,c3
+  data l10.dat d10=c1,c3
+!  data l25.dat d11=c1,c3
+  d1 line key "z=0cm"
+  d2 lstyle 2 key "z=1.10cm"
+  d3 lstyle 3 key "x=2.21cm"
+  d4 lstyle 4 key "z=3.32cm"
+  d5 lstyle 5 key "z=4.42cm"
+  d6 lstyle 6 key "z=5.53cm"
+  d7 lstyle 7 key "z=6.63cm"
+  d8 lstyle 8 key "z=7.74cm"
+  d9 lstyle 9 key "z=8.84cm"
+  d10 lstyle 10 key "z=9.95cm"
+!  d11 lstyle 11 key "z=26.53cm"
+end graph

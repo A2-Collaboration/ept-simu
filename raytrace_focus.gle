@@ -1,0 +1,30 @@
+size 20 20
+begin graph
+key nobox pos tr hei .5
+xaxis min 0 max 90 hei .6
+yaxis min -10 max 80 hei .6
+xtitle "Index_x" hei .7
+ytitle "Index_y" hei .7
+title "omap140.map, radiator 11.5 cm in front of pole-edge" hei .6 
+data track_focus_14.dat d1=c1,c2 d2=c3,c4
+d1 line key "tilt -1^{o}"
+d2 lstyle 2 key "tilt +1^{o}"
+data polschuh_io.geo d11
+data feldkarte.geo d12
+data focus14.dat d13 
+d11 lstyle 3 key "pole-edge"
+!d15 lstyle 3
+d12 lstyle 2 key "limit field-map"
+d13 line key "focal points"
+!let d14 = (2.81) from 16.9 to 80.36 step 63.46
+!d14 lstyle 1 lwidth .01 key "position of detectors"
+data detektor_geo.geo d15
+d15 line lwidth .01 key "position of detectors"
+end graph
+set hei .5
+amove xg(2) yg(51)
+text 20-180 MeV step 20MeV
+set hei .5
+amove xg(65) yg(-20)
+text raytrace\_focus.gle
+set hei .7

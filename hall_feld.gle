@@ -1,0 +1,22 @@
+size 20 20
+begin graph
+  key nobox pos br hei .6
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "Index\_x" hei .6
+  ytitle "Feld/Gauss" hei .6
+  title "omap140.map, Feld entlang der Messlinie" hei .6
+  data fort.25 d1=c1,c3
+  d1 line
+end graph
+amove xg(47.37) yg(14233.41)
+marker circle 1
+amove xg(42.5) yg(13300)
+set hei .6
+text Ort der Sonde
+amove xg(44) yg(14100)
+text Am Sonden-Ort ist der
+amove xg(44) yg(14080)
+text Feldgradient
+amove xg(44) yg(14060)
+text  0.3 % / cm

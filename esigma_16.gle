@@ -1,0 +1,16 @@
+size 20 20
+begin graph
+  key nobox hei .6 pos cc
+  xaxis hei .6 
+  yaxis hei .6
+  xtitle "E_{el}/MeV" hei .6
+  ytitle "{\sigma}/MeV" hei .6
+  data deichung_140.dat d1=c2,c3
+  data brems_mcf_index.dat d2=c1,c3
+  data brems_mcb_index.dat d3=c1,c3
+  let d12 = d2*2.424
+  let d13 = d3*2.424
+  d1 marker wcircle msize .15 key "detectors"
+  d12 marker fcircle msize .15 key "intrinsic focus"
+  d13 marker wsquare msize .15 key "intrinsic detector"
+end graph  

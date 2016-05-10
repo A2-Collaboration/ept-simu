@@ -1,0 +1,9 @@
+size 20 20
+begin graph
+  xaxis hei .6 
+  yaxis hei .6
+  xtitle "E/MeV" hei .6
+  data brems_mc.dat d5
+  d5 line
+  d6 marker wcircle msize .2
+end graph

@@ -1,0 +1,13 @@
+! Darstellung der intrinsischen Aufloesung aus brems_mc.f
+! gegen die durch die Detektorbreite gegebene Aufloesung aus 
+! brems_mc_el.f
+size 20 20
+begin graph
+  key nobox hei .6 pos tr
+  xaxis hei .6
+  yaxis hei .6
+  xtitle "E_{el}\,/MeV" hei .6
+  ytitle "\sigma" hei .6
+  title "Eo=1600MeV" hei.6
+  data brems_int_cm.dat d1=c2,c3
+  data brems_count_cm.dat d2=???

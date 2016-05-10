@@ -1,0 +1,10 @@
+size 20 20
+begin graph
+xaxis hei .6 min 155 max 160
+yaxis hei .6 max .03
+xtitle "E_{el}/MeV" hei .6
+ytitle "Wahrscheinlichkeit" hei .6
+title "omao140.map, brems_mc_el.f" hei .6
+  data brems_mc_el.dat d1
+  d1 marker wcircle msize .2
+end graph

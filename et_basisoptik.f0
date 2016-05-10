@@ -1,0 +1,129 @@
+c
+c      e t _ b a s i s o p t i k . f
+c
+c      Programm prueft, wie der Strahl durch
+c      Endpoit-Tagger, ET, Koorektur-Magnet, KM, Main-Tagget, MT,
+c      zum Strahlfaenger gelangt
+c      Rechnung mit Kreisen und Geraden.
+c      MT hat den Eintritt bei (x,z)=(0,0), er lenkt in z-Richtung ab
+c      die x-Richtung ist die Richtung des einlaufenden Strahls.
+c      ET und KM werden einfach duch jeweils zwei x-Werte gegeben,
+c      die den Eintritt und Austritt angeben.
+c      Der Soll-Eintritt in ET ist bei x=0
+c
+c      Diese Geoemetrieangaben stehen in einem File et_km_mt.geo
+c      alle Laengen in cm
+c      als ET: x-Eintritt und Austritt
+c          KM: x-Eintritt und Austritt
+c          MT: Eintritt: xe,ze,re
+c              Austritt: xa,za,ra und
+c      Sollstrahl-Austritt xex1,zex1,xex2,zex2,ret,rkm,rmt
+c
+c      Das Ergebnis steht in fort.20      
+c
+c      Laden als
+c      g77 -o et_basisoptik.exe et_basisoptik.f sub_g_k.f
+      implicit none
+      real xete,xeta,xkme,xkma,xe,ze,re,xa,za,ra,
+     &  zex1,xex1,xex2,zex2,rmtsoll,x,z,wet,pi,a,b,
+     &  t,ret,rkm,rmt,w,xrkm,zrkm,wkm,xkr,zkr,vz,
+     &  wt,xm,zm,dx,dx1,dx2,winkel,x0,z0,dz1,dz2,dz,
+     &  teta,phi
+c
+      pi=3.1415926
+      open(1,file='et_km_mt.geo',status='old')
+      read(1,*)xete,xeta
+      read(1,*)xkme,xkma
+      read(1,*)xe,ze,re
+      read(1,*)xa,za,ra
+      read(1,*)xex1,zex1,xex2,zex2,ret,rkm,rmt
+      close(1)
+      print*,'Laengen in cm, Winkel in Grad'
+      print*,'Radien in ET, KM, MT'
+      print*,'unendlich, also kein Feld ist r>1.E30'
+      print*,'in ET und MT sind die Radien postiv, '
+      print*,'in km ist der Radius negativ anzugeben'
+      
+      print*,'ret,rkm,rmt [',ret,rkm,rmt,']:'
+      read*,ret,rkm,rmt
+c
+c      Strahl durch ET
+      wet=asin((xeta-xete)/ret)
+      z=ret-ret*cos(wet)
+      w=wet/pi*180.
+      x=xeta
+      write(20,*) xete-50,0.,0.
+      write(20,*) xete,0.,0.
+      do winkel=0.,wet,wet/10.
+        write(20,*)ret*sin(winkel)+xete,ret-ret*cos(winkel),0.
+      end do
+      write(20,*) x,z,w
+      print*,'Strahl durch ET x,z,w ',x,z,w
+c      Strahl zum KM
+      x=xkme
+      z=(xkme-xeta)*tan(wet)+z
+      write(20,*)x,z,w
+      x0=x
+      z0=z
+      print*,'Strahl zum KM x,z,w ',x,z,w
+c      Strahl durch KM
+      dx=xkma-xkme
+      zrkm=z+rkm*cos(wet)
+      dx1=-rkm*sin(wet)
+      xrkm=x0+dx1
+      dx2=dx-dx1
+      wkm=asin(dx2/rkm)
+      x=xkma
+      z=zrkm-rkm*cos(wkm)
+      w=wkm/pi*180.
+      print*,'rkm,xrkm,x0',rkm,xrkm,x0
+      do winkel=wet,wkm,(wkm-wet)/10.
+        write(20,*)rkm*sin(winkel)+xrkm,zrkm-rkm*cos(winkel),0.
+        print*,'rkm*sin(winkel)',rkm*sin(winkel)
+      end do
+      x0=x
+      z0=z
+      write(20,*)x,z,w
+      print*,'Strahl durch KM, x,z,w ',x,z,w      
+c      Geraden-Gleichung
+      a=tan(wkm)
+      b=z-a*x
+      vz=-1.
+      call cut_g_k(a,b,xe,ze,re,vz,x,z,t)
+      write(20,*)x,z,w
+      print*,'Strahl durch Eintritt MT, x,z,w ',x,z,w
+c      Mittelpunkt des Strahl-Kreises durch MT
+      zm=z+rmt*cos(wkm)
+      xm=x-rmt*sin(wkm)
+      x0=x
+      z0=z
+c      Schnittpunkt mit Austritts-Kreis oder -Linie
+      vz=1.
+      call cut_g_k(0.,zex1,xm,zm,rmt,vz,x,z,t)
+      if (x.gt.270.1) then
+        t=pi/2+t
+        w=t/pi*180
+        print*,'Strahl aus MT Gerade, x,z,w ',x,z,w
+      else
+        vz=1.
+        print*,'vor cut_k_k, x,z,w ',x,z,w
+        call cut_k_k_trig(xa,za,ra,xm,zm,rmt,vz,x,z,t)
+        print*,'vz  ',vz
+        t=pi/2+t
+        w=t/pi*180
+        print*,'nach cut_k_k, x,z,w ',x,z,w
+        print*,'Strahl aus MT Kreis, x,z,w ',x,z,w
+      end if
+c      Kreis zeichnen
+      do winkel=wkm,t,(t-wkm)/50.
+        write(20,*)xm+rmt*sin(winkel)+x0,zm-rmt*cos(winkel),0.
+      end do
+      write(20,*)x,z,w
+      a=tan(t)
+      b=z-a*x
+      write(20,*)(400.-b)/a,400.,w
+      write(20,*)(500.-b)/a,500.,w
+      write(20,*)(700.-b)/a,700.,w
+      print*,'Strahl am Ziel, x,z,w ',x,z,w
+      stop
+      end
